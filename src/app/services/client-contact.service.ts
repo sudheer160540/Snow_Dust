@@ -26,6 +26,6 @@ export class ClientContactService {
     return this.http.get<ClientContactModel>(environment.servicesURL +'api/clientContacts/'+id);
   }
   updateContact(user: ClientContactModel,id): Observable<ClientContactModel> {
-    return this.http.put<ClientContactModel>(environment.servicesURL + 'api/clientContacts/'+id,user);
+    return this.http.patch<ClientContactModel>(environment.servicesURL + 'api/clientContacts/'+id,user);
   }
 }

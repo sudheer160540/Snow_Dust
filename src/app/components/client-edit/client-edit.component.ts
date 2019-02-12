@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ClientModel } from '../../model/client-model';
 import { ClientService } from '../../services/client.service';
 import { MatTableDataSource } from '@angular/material';
+import { ToastrManager } from 'ng6-toastr-notifications';
 @Component({
   selector: 'app-client-edit',
   templateUrl: './client-edit.component.html',
@@ -17,7 +18,7 @@ export class ClientEditComponent implements OnInit {
   submitted = false;
   user = new ClientModel();
   error: any;
-  constructor(public clinser: ClientService, private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
+  constructor(public clinser: ClientService, private route: ActivatedRoute, private http: HttpClient, private router: Router,public toastr: ToastrManager) { }
 
   ngOnInit() {
 
@@ -62,7 +63,7 @@ export class ClientEditComponent implements OnInit {
       .subscribe((res) => {
         console.log("update")
         this.getClientlist();
-        alert("Category Updated succesfully")
+        this.toastr.infoToastr('Updated');
         this.router.navigate(['/client']);
       }, (err) => {
         console.log(err);

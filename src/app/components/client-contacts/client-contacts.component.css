@@ -19,4 +19,12 @@
     border: 1px solid #80808045;
     padding-top: 38px;
     padding-bottom: 20px;
+    margin-bottom:2%;
+}
+.catgry-table{
+  margin-top:5% !important;
+  border: 1px solid #e4e4e4;
+}
+.mat-form-field-flex {
+  border: 1px solid #80808045 !important;
 }

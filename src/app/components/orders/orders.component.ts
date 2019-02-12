@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { OrdersModel } from '../../model/orders-model';
 import { OrdersService } from '../../services/orders.service';
 import { Router } from '@angular/router';
-import { containsElement } from '@angular/animations/browser/src/render/shared';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-orders',
@@ -38,7 +38,7 @@ export class OrdersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private orderser: OrdersService, public http: HttpClient, private router: Router) { }
+  constructor(private orderser: OrdersService, public http: HttpClient, private router: Router,public toastr: ToastrManager) { }
 
   ngOnInit() {
  
@@ -203,8 +203,7 @@ export class OrdersComponent implements OnInit {
     if(id!==''){
       this.orderser.deleteCatOrder(id)
       .subscribe((res: OrdersModel) => {
-        
-        alert("delete success");
+        this.toastr.errorToastr('Deleted');
         this.getallconfrmordrs();
       }, err => { alert('no');
       alert("delete error");
@@ -218,7 +217,7 @@ export class OrdersComponent implements OnInit {
     this.orderser.deleteOrder(data)
     .subscribe((res: OrdersModel) => {
       
-      alert("delete success");
+      this.toastr.errorToastr('Deleted');
       this.getallconfrmordrs();
     }, err => { alert('no');
     alert("delete error");

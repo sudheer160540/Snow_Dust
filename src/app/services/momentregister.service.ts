@@ -17,7 +17,19 @@ export class MomentregisterService {
   }
 
   searchdetails(sku,productcode,catname){
-   alert(sku+productcode+catname);
-    return this.http.get(environment.servicesURL + 'api/Products?filter={"where":{"or":[{"SKU_SI_No":"'+sku+'"},{"productCode":"'+productcode+'"},{"catId":"'+catname+'"}]},"include":{"relation":"CategorieData","scope":{"fields":["categoryName"]}}}')
+    console.log(sku,productcode,catname);
+    return this.http.get(environment.servicesURL + 'api/Products?filter={"where":{"or":[{"SKU_SI_No":"'+sku+'"},{"productCode":"'+productcode+'"},{"catId":"'+catname+'"}]},"include":{"relation":"CategorieData","scope":{"fields":["categoryName"]}}}' )
   }
+
+  addMomentReg(catname,sku){
+    console.log(catname,sku)
+    return this.http.post(environment.servicesURL + 'api/MomentRegisters/addMomentregister' ,catname,sku);
+
+  }
+
+  getAllMomentRegisters(){
+    return this.http.get(environment.servicesURL + 'api/MomentRegisters?filter= {"include":[{"relation":"productData","scope":{"fields":["SKU_SI_No"]}},{"relation":"WorkflowStatusData"}]}')
+  }
+
+
 }

@@ -45,13 +45,15 @@
     <div class="col-md-12 text-center">  
       <button class="editbutton" type="button" mat-raised-button color="accent" (click)="GetItemstoAllocate(user.orderNo,user.clientId)">Get Items to Allocate </button>
          </div>
+        </form>
 
+</div>
 
 <!----First Table-->
 <div class="container">
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-  </mat-form-field>
+    <mat-form-field class="catg-input-filter">
+        <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search" >
+      </mat-form-field>
   <div>
     <mat-table [dataSource]="GetItemsdata" matSort class="catgry-table">
 
@@ -94,9 +96,9 @@
 <!------------------Second Table------------------>
 
  <div class="container">
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-  </mat-form-field>
+    <mat-form-field class="catg-input-filter">
+        <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search" >
+      </mat-form-field>
   <div>
     <mat-table [dataSource]="viewAvlbltyData" matSort class="catgry-table">
 
@@ -152,5 +154,3 @@
 </div>
 
 
-</form>
-</div>

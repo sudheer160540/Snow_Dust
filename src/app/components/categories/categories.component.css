@@ -56,3 +56,6 @@ margin:20px auto;
 /deep/.mat-form-field-underline {
   display: none !important;
 }
+.mat-form-field-flex {
+  border: 1px solid #80808045 !important;
+}

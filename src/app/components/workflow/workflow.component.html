@@ -1,189 +1,169 @@
 <div class="container catgry-form">
-  <form #WorkFlowform="ngForm" (ngSubmit)="addWorkFlow(WorkFlowform.value)" >
-
-<div>
+    <form #WorkFlowform="ngForm" (ngSubmit)="addWorkFlow(WorkFlowform.value)" >
+  
+  <div class="row">
+        <div class="form-group">
+            <div class="col-md-4">
+              <input type="hidden" name="editid" placeholder="workflow code" value="add" class="form-control catg-input" required
+                [(ngModel)]="Workflow2.editid" #editid="ngModel" readonly>
+      
+            </div>
+         </div>
+        </div>
+        <div class="row">
       <div class="form-group">
+        <div class="col-md-2">
+          <label class="control-label">WorkFlow Code</label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="workflowCode" placeholder="workflow code" class="form-control catg-input" required
+            [(ngModel)]="Workflow2.workflowCode" #workflowCode="ngModel">
+  
+        </div>
+      </div>
+   
+      <div class="form-group">
+        <div class="col-md-2">
+          <label class="control-label">WorkFlow Name</label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="workflowName" placeholder="workflow name" class="form-control catg-input" required
+            [(ngModel)]="Workflow2.workflowName" #workflowName="ngModel">
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+        <div class="form-group">
           <div class="col-md-2">
-            <label class="control-label">workflowid</label>
+            <label class="control-label">Status code</label>
           </div>
           <div class="col-md-4">
-            <input type="text" name="editid" placeholder="workflow code" class="form-control product-input" required
-              [(ngModel)]="Workflow2.editid" #editid="ngModel" readonly>
-    
-          </div>
-       </div>
-</div><br><br><br><br><br>
-
-
-    <div class="form-group">
-      <div class="col-md-2">
-        <label class="control-label">WorkFlow Code</label>
-      </div>
-      <div class="col-md-4">
-        <input type="text" name="workflowCode" placeholder="workflow code" class="form-control product-input" required
-          [(ngModel)]="Workflow2.workflowCode" #workflowCode="ngModel">
-
-      </div>
-    </div>
-
-
-    <div class="form-group">
-      <div class="col-md-2">
-        <label class="control-label">WorkFlow Name</label>
-      </div>
-      <div class="col-md-4">
-        <input type="text" name="workflowName" placeholder="workflow name" class="form-control product-input" required
-          [(ngModel)]="Workflow2.workflowName" #workflowName="ngModel">
-
-      </div>
-    </div>
-
-    <br>
-
-
-    <div class="catg-description">
-
-      <div class="form-group">
-        <div class="col-md-2">
-          <label class="control-label">Status code</label>
-        </div>
-        <div class="col-md-4">
-          <input type="text" name="statusCode" placeholder="status code" class="form-control product-input" required
-            [(ngModel)]="workflow.statusCode" #statusCode="ngModel">
-
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-md-2">
-          <label class="control-label">Status Name</label>
-        </div>
-        <div class="col-md-4">
-          <input type="text" name="statusName" placeholder="status name" class="form-control product-input" required
-            [(ngModel)]="workflow.statusName" #statusName="ngModel">
-
-        </div>
-       
-     </div>
-    </div>
-
-     <button class="editbutton" type="button" mat-raised-button color="accent" (click)="statusAdd(statusCode.value,statusName.value,'')"> Add </button>
-     <br><br>
-
-     <div class="container example-container mat-elevation-z8" >
-        <mat-form-field>
-          <input matInput (keyup)="applyFilter1($event.target.value)" placeholder="Filter">
-        </mat-form-field>
-        <div>
-          <mat-table [dataSource]="dataSource" matSort class="catgry-table table-responsive">
-            
-      
-            <ng-container matColumnDef="statuscode">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Status Code</mat-header-cell>
-              <mat-cell *matCellDef="let dataSource"> {{dataSource.statusCode}} </mat-cell>
-            </ng-container>
-      
-            <ng-container matColumnDef="statusname">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Status Name</mat-header-cell>
-              <mat-cell *matCellDef="let dataSource"> {{dataSource.statusName}}  </mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="actionsColumn">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
-              <mat-cell *matCellDef="let dataSource;let i=index"> 
-                  <button class="delbutton" mat-raised-button color="warn" (click)="deleteStatus(i,dataSource.id)"> Delete  </button>
-
-                 </mat-cell>
-            </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-          </mat-table>
-      
-          <!-- <mat-paginator [pageSizeOptions]="[3, 7, 9]" showFirstLastButtons></mat-paginator> -->
-        </div>
-      </div>
-
-     
-    
-      
-
+            <input type="text" name="statusCode" placeholder="status code" class="form-control catg-input" required
+              [(ngModel)]="workflow.statusCode" #statusCode="ngModel">
   
-
-    <div class="row" *ngIf="add">
-        <div class=" col-md-12 text-center">
-          <input color="primary" style="margin-left:5%" type="submit" value="Add WorkFlow" class="add-btn">
+          </div>
         </div>
-    </div>
-
-    <div class="row" *ngIf="edit">
-        <div class=" col-md-12 text-center">
-            <input color="primary" style="margin-left:5%" type="submit" value="Update WorkFlow" class="add-btn">
-          <!-- <button color="primary" style="margin-left:5%" type="button" value="Update WorkFlow" class="add-btn" (click)="upadateWorkFlow(Workflow2)">Update WorkFlow</button> -->
-        </div>
-    </div>
-
-
-
-  </form>
-
-
+  
+        <div class="form-group">
+          <div class="col-md-2">
+            <label class="control-label">Status Name</label>
+          </div>
+          <div class="col-md-4">
+            <input type="text" name="statusName" placeholder="status name" class="form-control catg-input" required
+              [(ngModel)]="workflow.statusName" #statusName="ngModel">
+  
+          </div>
+         
+       </div>
+      </div>
+      <div class="row" >
+          <div class=" col-md-12 text-center">
+       <button class="editbutton" type="button" mat-raised-button color="accent" (click)="statusAdd(statusCode.value,statusName.value,'')"> Add Workflow </button>
+  </div>
+</div>
+    </form>
 </div>
 
 
-<!--Final workflow table-->
+
 <div class="container">
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter2($event.target.value)" placeholder="Search Workflows">
+        
+  <mat-form-field class="catg-input-filter">
+      <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search" >
     </mat-form-field>
-    <div>
-      <mat-table [dataSource]="dataSource2" matSort class="catgry-table">
+         
+            <mat-table [dataSource]="dataSource" matSort class="catgry-table table-responsive">
+              
+        
+              <ng-container matColumnDef="statuscode">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Status Code</mat-header-cell>
+                <mat-cell *matCellDef="let dataSource"> {{dataSource.statusCode}} </mat-cell>
+              </ng-container>
+        
+              <ng-container matColumnDef="statusname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Status Name</mat-header-cell>
+                <mat-cell *matCellDef="let dataSource"> {{dataSource.statusName}}  </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="actionsColumn">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
+                <mat-cell *matCellDef="let dataSource;let i=index"> 
+                    <button class="delbutton" mat-raised-button color="warn" (click)="deleteStatus(i,dataSource.id)"> Delete  </button>
+  
+                   </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            </mat-table>
+        
+            <!-- <mat-paginator [pageSizeOptions]="[3, 7, 9]" showFirstLastButtons></mat-paginator> -->
+          </div>
+  
+      <div class="row" *ngIf="add">
+          <div class=" col-md-12 text-center">
+            <input color="primary" style="margin-left:5%" type="submit" value="Add WorkFlow" class="add-btn">
+          </div>
+      </div>
+  
+      <div class="row" *ngIf="edit">
+          <div class=" col-md-12 text-center">
+              <input color="primary" style="margin-left:5%" type="submit" value="Update WorkFlow" class="add-btn">
+            <!-- <button color="primary" style="margin-left:5%" type="button" value="Update WorkFlow" class="add-btn" (click)="upadateWorkFlow(Workflow2)">Update WorkFlow</button> -->
+          </div>
+      </div>
+  
+  
 
-        <ng-container matColumnDef="workflowcode">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Workflow Code</mat-header-cell>
-          <mat-cell *matCellDef="let dataSource2"> {{ dataSource2.workflowCode }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="workflowname">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Workflow Name </mat-header-cell>
-          <mat-cell *matCellDef="let dataSource2"> {{ dataSource2.workflowName }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="workflowstatusdata">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Workflow Status Data</mat-header-cell>
-          <mat-cell *matCellDef="let dataSource2" > 
-          <!-- <p *ngFor="dataSource2.workflowStatusData.statusName">
-            {{ dataSource2.workflowStatusData.statusName}}
-          </p>   -->
-
-          <!-- {{ dataSource2.workflowStatusData }} -->
-          <p *ngFor="let data of dataSource2.workflowStatusData ">
-              {{ data.statusName}},
-          </p>
+  
+  
+  <!--Final workflow table-->
+  <div class="container">
+      <mat-form-field class="catg-input-filter">
+          <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search" >
+        </mat-form-field>
+     
+        <mat-table [dataSource]="dataSource2" matSort class="catgry-table">
+  
+          <ng-container matColumnDef="workflowcode">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Workflow Code</mat-header-cell>
+            <mat-cell *matCellDef="let dataSource2"> {{ dataSource2.workflowCode }} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="workflowname">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Workflow Name </mat-header-cell>
+            <mat-cell *matCellDef="let dataSource2"> {{ dataSource2.workflowName }} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="workflowstatusdata">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Workflow Status Data</mat-header-cell>
+            <mat-cell *matCellDef="let dataSource2" > 
+            <!-- <p *ngFor="dataSource2.workflowStatusData.statusName">
+              {{ dataSource2.workflowStatusData.statusName}}
+            </p>   -->
+  
+            <!-- {{ dataSource2.workflowStatusData }} -->
+            <p *ngFor="let data of dataSource2.workflowStatusData ">
+                {{ data.statusName}},
+            </p>
+     
+  
+            </mat-cell>
+          </ng-container>
+   <ng-container matColumnDef="actionsColumn">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Actioncolumns
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <button class="editbutton-prdct" *ngIf="!row.editing" mat-raised-button color="accent" (click)="EditWorkflow(row.id)"
+                > Edit </button> &nbsp;&nbsp;
+              <button class="delbutton" mat-raised-button color="warn" (click)="deleteWorkFlow(row.id)"> Delete</button>
+            </mat-cell>
+          </ng-container>
+  
+          <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
+        </mat-table>
+  
+        <mat-paginator #paginator [pageSize]="5"  [pageSizeOptions]="[5,10, 15]" showFirstLastButtons></mat-paginator>
    
-
-          </mat-cell>
-        </ng-container>
-
-        
-        
-
-
-        <ng-container matColumnDef="actionsColumn">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Actioncolumns
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row">
-            <button class="editbutton-prdct" *ngIf="!row.editing" mat-raised-button color="accent" (click)="EditWorkflow(row.id)"
-              > Edit </button> &nbsp;&nbsp;
-            <button class="delbutton" mat-raised-button color="warn" (click)="deleteWorkFlow(row.id)"> Delete</button>
-          </mat-cell>
-        </ng-container>
-
-        <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
-      </mat-table>
-
-      <mat-paginator #paginator [pageSize]="5"  [pageSizeOptions]="[5,10, 15]" showFirstLastButtons></mat-paginator>
     </div>
-  </div>
-
-
-
+  

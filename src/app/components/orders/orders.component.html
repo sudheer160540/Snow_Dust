@@ -1,5 +1,6 @@
-<div class="container catgry-form">
+<div class="container ">
     <form #addForm="ngForm" (ngSubmit)="confirmorder(addForm.value)">
+      <div class="catgry-form">
       <input type="hidden" name="isEdit" placeholder="Order Number" class="form-control catg-input" required
       [(ngModel)]="user.isEdit" #productcode="ngModel">
       <div class="row">
@@ -95,16 +96,17 @@
         <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="Add to Order" class="btn-catgry">
       </div> -->
       <div class="col-md-12 text-center">  
-     <button class="editbutton" type="button" mat-raised-button color="accent" (click)="getallOrdersBycat(user.categoryName)"> add to order </button>
+     <button class="editbutton" type="button" mat-raised-button color="accent" (click)="getallOrdersBycat(user.categoryName)"> Add to order </button>
         </div>
-   
+      </div>
+     
   
   
   
   <div class="container">
-      <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-      </mat-form-field>
+      <mat-form-field class="catg-input-filter">
+          <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search" >
+        </mat-form-field>
       <div>
         <mat-table [dataSource]="getallcatorders" matSort class="catgry-table">
     
@@ -146,26 +148,28 @@
         </mat-table>
     
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <mat-form-field class="order-date">
+            <input matInput [matDatepicker]="picker" name="purchaseDate" placeholder="Choose a date"
+                required [(ngModel)]="user.purchaseDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
       </div>
-      <mat-form-field class="order-date">
-          <input matInput [matDatepicker]="picker" name="purchaseDate" placeholder="Choose a date"
-              required [(ngModel)]="user.purchaseDate">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+
   
       <div class="col-md-12 text-center">
           <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="confirm order" class="btn-catgry" (click)="delete(row.id)">
         </div>
   
     </div>
-  </form>
-  </div>
+    </form>
+</div>
+
   
   <div class="container">
-      <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-      </mat-form-field>
+      <mat-form-field class="catg-input-filter">
+          <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search" >
+        </mat-form-field>
       <div>
         <mat-table [dataSource]="getallConfirmOrder" matSort class="catgry-table">
     
@@ -193,7 +197,7 @@
     
           <ng-container matColumnDef="purchaseDate">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Required Date </mat-header-cell>
-              <mat-cell *matCellDef="let getallConfirmOrder"> {{getallConfirmOrder.requiredDate}} </mat-cell>
+              <mat-cell *matCellDef="let getallConfirmOrder"> {{getallConfirmOrder.requiredDate| date}} </mat-cell>
             </ng-container>
     
           <ng-container matColumnDef="actionsColumn">

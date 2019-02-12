@@ -138,31 +138,37 @@ export class WorkflowComponent implements OnInit {
     console.log("add fire")
 
     this.Workflow2.Statusdata = this.statusarray;
+    console.log(this.statusarray)
+    console.log('Workflow2')
     console.log(this.Workflow2)
-    console.log(this.Workflow2.editid)
+    if(this.Workflow2.editid == undefined || this.Workflow2.editid == null  ){
+       alert('add');
+       console.log('addworkflow')
+       console.log("g" + JSON.stringify(this.Workflow2))
+        this.http.addWorkFlow(this.Workflow2).subscribe((res) => {
+          console.log(res);
+          this.getallWorkflows();
+          alert("workflow added");
+          this.statusarray = [];
+          this.dataSource=[];
+          console.log(this.dataSource);
+    
+          console.log(this.statusarray);
+          console.log(this.statusarray.length);
+          this.formValues.resetForm();
+          console.log(" form reset works")
+    
+        }, (err) => {
+          console.log(err);
+        })
 
-    if(this.Workflow2.editid !== undefined){
-      console.log("update fire : editid=" + this.Workflow2.editid);
+  }else{
+    alert('edit');
+    console.log("update fire : editid=" + this.Workflow2.editid);
      
-      this.upadateWorkFlow();
-    }else {
-      console.log('addworkflow')
-   console.log("g" + JSON.stringify(this.Workflow2))
-    this.http.addWorkFlow(this.Workflow2).subscribe((res) => {
-      console.log(res);
-      this.getallWorkflows();
-      alert("workflow added");
-      this.statusarray = [];
-
-      console.log(this.statusarray);
-      console.log(this.statusarray.length);
-      this.formValues.resetForm();
-      console.log(" form reset works")
-
-    }, (err) => {
-      console.log(err);
-    })
+    this.upadateWorkFlow();
   }
+    
 
   }
 
@@ -260,8 +266,11 @@ export class WorkflowComponent implements OnInit {
     this.http.updateWorkflow(this.updateData).subscribe(res=>{
           console.log(res);
           this.statusarray = [];
+          this.dataSource=[];
           this.formValues.resetForm();
           this.getallWorkflows();
+          this.add = true;
+          this.edit = false;
           this.router.navigate(['/workflow'])
         })
   }

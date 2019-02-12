@@ -21,7 +21,7 @@ export class ProductsComponent implements OnInit {
   dataSource: any;
   sampledata: any;
   CatdataSource: any;
-  displayedColumns = ['productCode', 'productName','SKU_SI_No','specs', 'actionsColumn'];
+  displayedColumns = ['SKU_SI_No','categoryName','productName','productCode','specs', 'actionsColumn'];
   user = new ProductModel();
   submitted = false;
   error: any;

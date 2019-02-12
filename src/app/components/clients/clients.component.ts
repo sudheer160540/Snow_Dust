@@ -38,13 +38,12 @@ export class ClientsComponent implements OnInit {
     
   }
   addclient(data){
-    alert('hi')
     console.log(data)
     this.submitted = true;
     this.clntser.addClient(this.user).subscribe((res) => {
       console.log(res)
       this.getalldetails();
-      this.toastr.successToastr('Client inserted succesfully');
+      this.toastr.successToastr('Client saved');
 
     }, (err) => {
       console.log(err);
@@ -100,6 +99,7 @@ export class ClientsComponent implements OnInit {
     this.clntser.delById(id)
       .subscribe((deldt: ClientModel) => {
         alert("Succesfully deleted")
+        this.toastr.errorToastr('Deleted');
         console.log(deldt);
         this.dataSource = deldt;
         console.log(this.dataSource);

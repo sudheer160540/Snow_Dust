@@ -1,4 +1,4 @@
-.product-input,.product-input-serl{
+.product-input-serl{
     width: 75%;
     height: 51px ; 
     }
@@ -28,6 +28,7 @@
     border: 1px solid #80808045;
     padding-top: 38px;
     padding-bottom: 20px;
+    margin-bottom:3%;
   }
   .product-input-serl{
     margin-top:7%;
@@ -35,6 +36,12 @@
   }
   .editbutton{
     margin-right:8px !important;
+    border-radius: 5px;
+    background-color: #fe9251;
+    border: 1px solid #fe9251;
+    color:#fff;
+    margin-top:5%;
+    font-weight: 500;
   
   } 
   /* .example-container.mat-elevation-z8 {    
@@ -54,6 +61,7 @@
   .mat-table {
     overflow: auto;
     max-height: 500px;
+    border:1px solid #80808057 !important;
   }
   
   .mobile-label {
@@ -77,4 +85,11 @@
       padding: 8px 24px;
     }
   }
-  
+  .catg-input{
+    width: 75%;
+    height: 43px;
+    background-color: #f5f5f5c2;
+  }
+  .catg-input-filter {
+  margin-bottom:3%;
+  }

@@ -85,10 +85,14 @@
             <mat-cell *matCellDef="let dataSource"> {{dataSource.SKU_SI_No}} </mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="categoryName">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Category</mat-header-cell>
-              <mat-cell *matCellDef="let dataSource"> {{dataSource.categoryName}} </mat-cell>
-            </ng-container>
+     <ng-container matColumnDef="categoryName">
+<mat-header-cell *matHeaderCellDef mat-sort-header> Category</mat-header-cell>
+<mat-cell *matCellDef="let dataSource">
+<span *ngIf="dataSource.CategorieData"> {{dataSource.CategorieData.categoryName}}</span>
+<span *ngIf="!dataSource.CategorieData"> NA</span>
+</mat-cell>
+</ng-container>
+@sneha
 
           <ng-container matColumnDef="productCode">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Product Code </mat-header-cell>

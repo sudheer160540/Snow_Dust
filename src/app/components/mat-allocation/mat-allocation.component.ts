@@ -98,14 +98,14 @@ export class MatAllocationComponent implements OnInit {
 
   }
   allocselect() {
-    alert("Allocate button");
+
     // console.log(this.user);
     console.log(this.catIdArray);
     this.matserv.allocselect(this.catIdArray)
       .subscribe((res: MatAllocModel) => {
      
         console.log("allocselect");
-        alert("allocselect")
+      
       },
         err => {
           alert("allocselect eror")

@@ -39,7 +39,7 @@ export class ClientProjectService {
     console.log(client);
     console.log("user");
     console.log(id);
-    return this.http.put<ClientProjectModel>(environment.servicesURL + 'api/clientProjects/' + id, client);
+    return this.http.patch<ClientProjectModel>(environment.servicesURL + 'api/clientProjects/' + id, client);
 
 
   }

@@ -1,73 +1,152 @@
 <div class="container catgry-form">
-  <form #searchDet="ngForm" (ngSubmit)="searchDetails(searchDet.value)">
-      <div class="row">
-          <div class="form-group">
-              <div class="col-md-2">
-                  <label for="control-label"> Search By SKU/Serial </label>
-              </div>
-              <div class="col-sm-8">
-                  <select class="form-control catg-input" name="SKU_SI_No" [(ngModel)]="user.SKU_SI_No">
-                      <option value="">...Search and select SKU / Serial Number...</option>
-                      <option *ngFor="let res of getdetailsdata " [ngValue]="res.SKU_SI_No">
-                          {{res.SKU_SI_No}}
-                      </option>
-                  </select>
-              </div>
-              <div class="col-md-2">
-                  <p>[OR]</p>
-              </div>
-          </div>
-      </div>
-      <br>
+    <form #searchDet="ngForm" (ngSubmit)="searchDetails(searchDet.value)">
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="control-label"> Search By SKU/Serial </label>
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-control catg-input" name="SKU_SI_No" [(ngModel)]="user.SKU_SI_No">
+                        <option value="">...Search and select SKU / Serial Number...</option>
+                        <option *ngFor="let res of getdetailsdata " [ngValue]="res.SKU_SI_No">
+                            {{res.SKU_SI_No}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <p>[OR]</p>
+                </div>
+            </div>
+        </div>
+        <br>
 
-      <div class="row">
-          <div class="form-group">
-              <div class="col-md-2">
-                  <label for="control-label"> Search By Product Code </label>
-              </div>
-          </div>
-          <div class="col-sm-8">
-              <select class="form-control catg-input" name="productCode" [(ngModel)]="user.productCode">
-                  <option value="">...Search and select Product Code...</option>
-                  <option *ngFor="let res of getdetailsdata" [ngValue]="res.productCode">
-                      {{res.productCode}}
-                  </option>
-              </select>
-          </div>
-          <div class="col-md-2">
-              <p>[OR]</p>
-          </div>
-      </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="control-label"> Search By Product Code </label>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <select class="form-control catg-input" name="productCode" [(ngModel)]="user.productCode">
+                    <option value="">...Search and select Product Code...</option>
+                    <option *ngFor="let res of getdetailsdata" [ngValue]="res.productCode">
+                        {{res.productCode}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <p>[OR]</p>
+            </div>
+        </div>
 
-      <div class="row">
-          <div class="form-group">
-              <div class="col-md-2">
-                  <label for="control-label"> Search By Category </label>
-              </div>
-          </div>
-          <div class="col-sm-8">
-              <select class="form-control catg-input" name="categoryName" [(ngModel)]="user.CategorieData">
-                  <option value="">...Search and select Product Category...</option>
-                  <option *ngFor="let res of searchByCat" [ngValue]="res.CategorieData.categoryName">
-                     <span >
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="control-label"> Search By Category </label>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <select class="form-control catg-input" name="categoryName" [(ngModel)]="user.CategorieData">
+                    <option value="">...Search and select Product Category...</option>
+                    <option *ngFor="let res of searchByCat" [ngValue]="res.CategorieData.catId">
+                       <span >
 
-                        {{res.CategorieData.categoryName }}
-                     </span> 
-                 
-  
-                  </option>
-              </select>
-          </div>
-          <div class="col-md-2">
-          </div>
-      </div>
-      <div class="col-md-12 text-center">
-          <!-- <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="Get Product" class="btn-catgry"> -->
-                      
-          <button mat-raised-button color="primary" style="margin-left:5%" type="button"  (click)="searchDetail(user.SKU_SI_No,user.productCode, user.CategorieData)"  class="btn-catgry">Get Product</button>
-          
-      </div>
+                          {{res.CategorieData.categoryName }}
+                       </span> 
+                   
+    
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+        <div class="col-md-12 text-center">
+            <!-- <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="Get Product" class="btn-catgry"> -->
+                        
+            <button mat-raised-button color="primary" style="margin-left:5%" type="button"  (click)="searchDetail(user.SKU_SI_No,user.productCode, user.CategorieData)"  class="btn-catgry">Get Product</button>
+            
+        </div>
 
 
-  </form>
+    </form>
 </div>
+
+<!-- {{workflows | json }}-->
+
+<div class="container">
+        <mat-form-field class="catg-input-filter">
+                <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search" >
+              </mat-form-field>
+    <div>
+      <mat-table [dataSource]="dataSource" matSort class="catgry-table">
+
+        <ng-container matColumnDef="sku/serialNumber">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>SKU /Serial Number </mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.SKU_SI_No}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.projectCode}} </mat-cell>
+        </ng-container>
+        
+       
+        <ng-container matColumnDef="selectworkflow">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Select WorkFlow </mat-header-cell>
+            <mat-cell *matCellDef="let dataSource">
+
+                <select class="form-control catg-input" name="workflows" [(ngModel)] ="work" (change)="changeee(dataSource.SKU_SI_No,work)"  >
+                    <option value="">...Search and select WorkFlows</option>
+                    <option *ngFor="let res of workflowsdata " [ngValue]="res.workflowName" >
+                            {{res.workflowName}} 
+                    </option>
+                </select>
+               
+            </mat-cell>
+          </ng-container>
+
+        
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>   
+</div>
+<div class="col-md-12 text-center">
+
+<button mat-raised-button color="primary" type="button" (click)="addMoment(dataSource.SKU_SI_No,work)"  class="btn-catgry">Add to Moment Register</button><br>
+
+</div>
+<div class="container">
+        <mat-form-field class="catg-input-filter">
+                <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search" >
+              </mat-form-field>
+        <div>
+          <mat-table [dataSource]="dataSource2" matSort class="catgry-table">
+    
+            <ng-container matColumnDef="sku/serialNumber">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>SKU/SerialNumber </mat-header-cell>
+              <mat-cell *matCellDef="let dataSource2"> {{dataSource2.clientId}} </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+              <mat-cell *matCellDef="let dataSource2"> {{dataSource2.projectCode}} </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="workflow">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Workflow</mat-header-cell>
+              <mat-cell *matCellDef="let dataSource2"> {{dataSource2.projectName}}
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
+          </mat-table>
+    
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>

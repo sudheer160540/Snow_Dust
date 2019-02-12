@@ -58,3 +58,6 @@ margin:20px auto;
   margin-bottom: 2%;
   background-color: #fff;
 }
+.mat-form-field-flex {
+  border: 1px solid #80808045 !important;
+}

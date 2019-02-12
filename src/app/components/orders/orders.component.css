@@ -2,10 +2,12 @@
     border: 1px solid #80808045;
     padding-top: 38px;
     padding-bottom: 20px;
+    margin-bottom:3%;
   }
   .catg-input{
     width: 75%;
-    height: 51px ;
+    height: 43px;
+    background-color: #f5f5f5c2;
   }
   .btn-catgry{
     margin-left: 5%;
@@ -19,6 +21,14 @@
   }
   .editbutton{
     margin-right:12px;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom:5px;
+    background-color: #fe9251;
+    border: 1px solid #fe9251;
+    color: #fff;
+    margin-top: 2%;
+    font-weight: 500;
   }
   .order-date{
     text-align: center;
@@ -34,4 +44,11 @@
     margin-top:5%;
     font-weight: 500;
 
+  }
+  .catg-input-filter {
+    height: 43px !important;
+    padding-bottom: 20px !important;
+    background-color: #ffffff;
+    width: 33%;
+    margin-bottom: 2%;
   }

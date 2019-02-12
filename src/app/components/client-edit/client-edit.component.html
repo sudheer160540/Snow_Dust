@@ -1,12 +1,14 @@
 <div class="container catgry-form">
 
   <form #updateForm="ngForm" (ngSubmit)="updateClient(updateForm.value)">
+
+    <div class="row">
     <div class="form-group">
       <div class="col-md-2">
         <label class="control-label">Client Name</label>
       </div>
       <div class="col-md-4">
-        <input type="text" name="clientName" placeholder="clientName" class="form-control product-input" required
+        <input type="text" name="clientName" placeholder="clientName" class="form-control catg-input" required
           [(ngModel)]="editdataAll.clientName" #productcode="ngModel">
       </div>
     </div>
@@ -16,36 +18,34 @@
         <label class="control-label">Website</label>
       </div>
       <div class="col-md-4">
-        <input type="text" name="website" placeholder="website" class="form-control product-input" required [(ngModel)]="editdataAll.website"
+        <input type="text" name="website" placeholder="website" class="form-control catg-input" required [(ngModel)]="editdataAll.website"
           #productname="ngModel">
 
       </div>
     </div>
+  </div>
 
+  <div class="row">
     <div class="form-group">
         <div class="col-md-2">
           <label class="control-label">Contact Number</label>
         </div>
         <div class="col-md-4">
-          <input type="text" name="contactnumber" placeholder="Contact Number" class="form-control product-input"
+          <input type="text" name="contactnumber" placeholder="Contact Number" class="form-control catg-input"
             required [(ngModel)]="editdataAll.contactNo" #productname="ngModel">
   
         </div>
       </div>
-  
-
-
       <div class="form-group">
           <div class="col-md-2">
             <label class="control-label">Contact Name</label>
           </div>
           <div class="col-md-4">
-              <input type="text" name="contactname" placeholder="Contact Name" class="form-control product-input"
+              <input type="text" name="contactname" placeholder="Contact Name" class="form-control catg-input"
               required [(ngModel)]="editdataAll.contactName" #productname="ngModel">
           </div>
         </div>
-
-
+      </div>
    
     <div class="row">
       <div class=" col-md-12 text-center">
