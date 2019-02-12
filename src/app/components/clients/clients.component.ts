@@ -38,13 +38,13 @@ export class ClientsComponent implements OnInit {
     
   }
   addclient(data){
-    alert('hi')
+   
     console.log(data)
     this.submitted = true;
     this.clntser.addClient(this.user).subscribe((res) => {
       console.log(res)
       this.getalldetails();
-      this.toastr.successToastr('Client inserted succesfully');
+      this.toastr.successToastr('Client Created Succesfully');
 
     }, (err) => {
       console.log(err);

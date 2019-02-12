@@ -41,7 +41,7 @@ export class ClientProjectComponent implements OnInit {
   private dialog: MatDialog, private catData: CategServicesList,public toastr: ToastrManager) { }
 
   ngOnInit() {
-    console.log("ddddddddddddddddddddddddddddd");
+   
     //this.catListDetails=this.catData.getCatgList();
     this.getallClientdetails();
     this.getClientnames();
@@ -68,7 +68,7 @@ export class ClientProjectComponent implements OnInit {
     this.ser.addClientProject(data).subscribe((res) => {
       console.log(res)
       this.getallClientdetails();
-      this.toastr.successToastr('Client Project inserted succesfully');
+      this.toastr.successToastr('Client Project Created Succesfully');
     }, (err) => {
       console.log(err);
       this.error = err;

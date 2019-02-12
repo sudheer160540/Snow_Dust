@@ -39,7 +39,7 @@ export class ClientContactEditComponent implements OnInit {
     this.submitted = true;
     this.clinser.updateContact(data, this.id)
       .subscribe((res) => {
-        this.toastr.successToastr('Client contact updated Success');
+        this.toastr.successToastr('Client Contact Updated Successful');
         this.router.navigate(['/clientcontactPage']);
       }, (err) => {
         console.log(err);

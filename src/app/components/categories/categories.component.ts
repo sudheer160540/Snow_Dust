@@ -92,7 +92,9 @@ export class CategoriesComponent implements OnInit {
 
   delete(id) {
     console.log(id);
-    this.ser.delById(id)
+
+    if(confirm("Are you sure to delete this record")) {
+      this.ser.delById(id)
       .subscribe((deldt: CategModel) => {
         this.toastr.warningToastr("Succesfully deleted");
         console.log(deldt);
@@ -102,6 +104,10 @@ export class CategoriesComponent implements OnInit {
       }, err => {
         console.log(err);
       })
+    }else{
+      
+    }
+    
   }
 
   applyFilter(filterValue: string) {
