@@ -1,0 +1,126 @@
+<div class="container catgry-form">
+  <form #addForm="ngForm" (ngSubmit)="addPrdct(addForm.value)">
+
+    <div class="form-group">
+        <div class="col-md-2">
+      <label class="control-label">Select Categoury</label>
+        </div>
+      <div class="col-md-4">
+          <select class="form-control catg-input" name="catId" [(ngModel)]="user.catId">
+              <option value="">Parent Categoury</option>
+              <option *ngFor="let lang of CatdataSource.filteredData" [ngValue]="lang.id">
+                {{lang.categoryName}}
+              </option>
+            </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-2">
+      <label class="control-label">Product Code</label>
+        </div>
+      <div class="col-md-4">
+          <input  type="text" name="productCode" placeholder="Product Code" class="form-control catg-input"
+            required [(ngModel)]="user.productCode" #productcode="ngModel">
+      </div>
+    </div>
+    <br>
+    <div class="catg-description">
+    <div class="form-group">
+      <div class="col-md-2">
+      <label class="control-label">Product Name</label>
+    </div>
+      <div class="col-md-4">
+            <input type="text" name="productName" placeholder="Product Name" class="form-control catg-input"
+            required [(ngModel)]="user.productName" #productname="ngModel">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-2">
+      <label class="control-label">Parent Specs</label>
+    </div>
+      <div class="col-md-4">
+          <textarea class="form-control catg-input" name="specs" rows="2" placeholder="Products Specs"
+          [(ngModel)]="user.specs"></textarea>
+        </div>
+      </div>
+<br>
+      <div class="form-group">
+          <div class="col-md-2">
+          <label class="control-label">Sku Code/Serial Number</label>
+        </div>
+          <div class="col-md-4">
+              <input type="text" class="form-control product-input-serl" name="specs" placeholder="Sku Code/Serial Number"
+              [(ngModel)]="user.SKU_SI_No">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class=" col-md-12 text-center">
+            <input color="primary" style="margin-left:5%" type="submit" value="Add Categoury" class="add-btn">
+          </div>
+        </div>
+   
+  </form>
+
+  {{categorylist}}
+  <br>
+  <br>
+  <br>
+  </div>
+
+      <!-- <div class="example-container mat-elevation-z8"> -->
+        <div class="container">
+            <mat-form-field class="catg-input-filter">
+                <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search" >
+              </mat-form-field>
+       
+        <mat-table [dataSource]="dataSource" matSort class="catgry-table table-responsive">
+    
+          <ng-container matColumnDef="SKU_SI_No">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> SKU Code / Serial Number </mat-header-cell>
+            <mat-cell *matCellDef="let dataSource"> {{dataSource.SKU_SI_No}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="categoryName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Category</mat-header-cell>
+              <mat-cell *matCellDef="let dataSource"> {{dataSource.categoryName}} </mat-cell>
+            </ng-container>
+
+          <ng-container matColumnDef="productCode">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Product Code </mat-header-cell>
+              <mat-cell *matCellDef="let dataSource"> {{dataSource.productCode}}
+              </mat-cell>
+            </ng-container>
+            
+          <ng-container matColumnDef="productName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Product </mat-header-cell>
+            <mat-cell *matCellDef="let dataSource"> {{dataSource.productName}}
+            </mat-cell>
+          </ng-container>
+
+         <ng-container matColumnDef="specs">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Specs </mat-header-cell>
+              <mat-cell *matCellDef="let dataSource"> {{dataSource.specs}}
+              </mat-cell>
+            </ng-container>
+    
+          <ng-container matColumnDef="actionsColumn">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Actioncolumns
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <button class="editbutton" *ngIf="!row.editing" mat-raised-button color="accent" (click)="prodedit(row.id)"
+                [routerLink]="['/productedit']"> Edit</button>
+              <button class="delbutton" mat-raised-button color="warn" (click)="delete(row.id)"> Delete</button>
+            </mat-cell>
+          </ng-container>
+    
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>

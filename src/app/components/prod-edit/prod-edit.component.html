@@ -1,0 +1,74 @@
+<div class="container catgry-form">
+  <form #updateForm="ngForm" (ngSubmit)="updateProd(updateForm.value)">
+    <div class="form-group">
+        <div class="col-md-2">
+      <label class="control-label">Select Categoury</label>
+        </div>
+
+        
+      <div class="col-md-4">
+       
+          <select class="form-control catg-input" name="catId"  [(ngModel)]="editdataAll.catId">
+              <option value="">Parent categoury</option>
+              <option *ngFor="let lang of dataSource.filteredData" 
+              [ngValue]="lang.id">
+                {{lang.productName}} 
+              </option>
+            </select>
+      </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2">
+      <label class="control-label">Product Code</label>
+        </div>
+      <div class="col-md-4">
+          <input  type="text" name="productCode" placeholder="Product Code" class="form-control product-input"
+            required [(ngModel)]="editdataAll.productCode" #productcode="ngModel">
+     
+      </div>
+    </div>
+    <br>
+    <div class="catg-description">
+    <div class="form-group">
+      <div class="col-md-2">
+      <label class="control-label">Product Name</label>
+    </div>
+      <div class="col-md-4">
+            <input type="text" name="productName" placeholder="Product Name" class="form-control product-input"
+            required [(ngModel)]="editdataAll.productName" #productname="ngModel">
+
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-2">
+      <label class="control-label">Parent Specs</label>
+    </div>
+      <div class="col-md-4">
+          <textarea class="form-control product-input" name="specs" id="notes" rows="2" placeholder="Products Specs"
+          [(ngModel)]="editdataAll.specs"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+          <div class="col-md-2">
+          <label class="control-label">SKU Code / Serial Number</label>
+        </div>
+          <div class="col-md-4">
+                <input type="text" name="SKU_SI_No" placeholder="SKU Code / Serial Number" class="form-control product-input"
+                required [(ngModel)]="editdataAll.SKU_SI_No" #productname="ngModel">
+    
+          </div>
+        </div>
+        <div class="row">
+          <div class=" col-md-12 text-center">
+            <input color="primary" style="margin-left:5%" type="submit" value="Update Categoury" class="add-btn">
+          </div>
+        </div>
+      
+
+    </div>
+  </form>
+  {{categorylist}}
+  <br>
+  <br>
+  <br>
+  </div>

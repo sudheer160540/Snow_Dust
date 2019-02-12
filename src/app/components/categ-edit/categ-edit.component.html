@@ -1,0 +1,39 @@
+<div class="container catgry-form">
+ 
+              <form #updateForm="ngForm" (ngSubmit)="updatecatg(updateForm.value)">
+               
+<fieldset>
+  <!-- <input  type="hidden" name="editid" value="editdataAll.editId"  [(ngModel)]="editdataAll.editId"  #categourycode="ngModel"> -->
+                  <div class="form-group col-md-6">
+                      <label for="first_name">Category Code</label> 
+                      <input  type="text" name="categoryCode" placeholder="Category Code"  class="form-control catg-input"   required [(ngModel)]="editdataAll.categoryCode"  #categourycode="ngModel">
+                  </div>
+
+                  <div class="form-group col-md-6">
+                      <label for="last_name">Category Name</label>
+                      <input  type="text" name="categoryName" placeholder="Category Name" class="form-control catg-input"  required [(ngModel)]="editdataAll.categoryName" #categouryname="ngModel">
+                  </div>
+
+                  <div class="form-group col-md-6">
+                      <label for="password">Description</label>
+                      <textarea class="form-control catg-input" name="description" id="description" rows="6" placeholder="Add additional description here." [(ngModel)]="editdataAll.description"></textarea>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                      <label>Parent Category</label>
+                      <select class="form-control catg-input"  name="parentId" [(ngModel)]="editdataAll.parentId">
+                          <option value="">Parent categoury</option>
+                          <option *ngFor="let lang of dataSource.filteredData"
+                          [ngValue]="lang.id" >
+                                  {{lang.categoryName}}
+                          </option>
+                        </select>
+                  </div>
+
+
+              </fieldset>
+<div class="col-md-12 text-center">
+              <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="Update"  class="btn-catgry">
+            </div>
+          </form>
+</div>

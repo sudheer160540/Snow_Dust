@@ -1,0 +1,130 @@
+<div class="container catgry-form">
+  <form #addForm="ngForm" (ngSubmit)="addClient(addForm.value)">
+
+    <fieldset>
+      <div class="form-group">
+        <div class="col-md-2">
+          <label for="control-label">Client Name</label>
+        </div>
+        <div class="col-md-4">
+          <select class="form-control catg-input" name="clientId" [(ngModel)]="clientPro.clientId">
+            <option value="">Select Client </option>
+            <option *ngFor="let lang of allclients.filteredData" [ngValue]="lang.id">
+              {{lang.clientName}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-2">
+          <label for="control-label">Curent Project Code</label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="projectCode" placeholder="Curent Project" class="form-control catg-input" required
+            [(ngModel)]="clientPro.projectCode" #projectCode="ngModel">
+        </div>
+      </div>
+
+      <div class="catg-description">
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="control-label">Start Date</label>
+          </div>
+          <div class="col-md-4">
+            <input type="date" name="startDate" placeholder="Curent Project" class="form-control catg-input" required
+              [(ngModel)]="clientPro.startDate" #startDate="ngModel">
+          </div>
+        </div>
+<br>
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="control-label">Curent Project Name</label>
+          </div>
+          <div class="col-md-4">
+            <input type="text" name="projectName" placeholder="Curent Project" class="form-control catg-input" required
+              [(ngModel)]="clientPro.projectName" #projectName="ngModel">
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="catg-description">
+
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="control-label">End Date</label>
+          </div>
+          <div class="col-md-4">
+            <input type="date" name="endDate" placeholder="Curent Project" class="form-control catg-input" required
+              [(ngModel)]="clientPro.endDate" #endDate="ngModel">
+          </div>
+        </div>
+
+      </div>
+
+
+    </fieldset>
+    <div class="col-md-12 text-center">
+      <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="Add Project to Client" class="btn-catgry">
+    </div>
+
+  </form>
+</div>
+
+
+  <div class="container">
+      <mat-form-field class="catg-input-filter">
+          <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search" >
+        </mat-form-field>
+    <div>
+      <mat-table [dataSource]="dataSource" matSort class="catgry-table">
+
+        <ng-container matColumnDef="ClientName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>ClientName </mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.ClientName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ProjectCode">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> ProjectCode </mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.projectCode}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ProjectName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> ProjectName</mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.projectName}}
+          </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Start">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Start </mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.startDate| date}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="End">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> End </mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.endDate| date}}
+          </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="actionsColumn">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Actioncolumns
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <button class="editbutton-prdct" *ngIf="!row.editing" mat-raised-button color="accent" (click)="clientProEdit(row.id)"
+              [routerLink]="['/categedit']"> Edit</button>
+            <button class="delbutton" mat-raised-button color="warn" (click)="delete(row.id)"> Delete</button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>

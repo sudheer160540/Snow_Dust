@@ -1,0 +1,144 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+    font-family: Roboto, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+#toolbarMenu {
+
+    color: #282828;
+    font-size: 46px;
+    display: flex;
+    float: left;
+    width: 79px;
+    height: 109%;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    cursor: pointer;
+    border-right: 1px solid #cccccc;
+}
+#mainToolbar .toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+#mainToolbar .toolbar-icon {
+    cursor: pointer;
+    margin: 0 8px;
+    color:#282828;
+
+}
+.mail_icon{
+    font-size: 30px;
+    display: flex;
+    float: left;
+    width: 79px;
+    height: 109%;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    cursor: pointer;
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+}
+#sidenavContainer {
+    margin-top: 64px;
+}
+
+#sidenav {
+    width: 240px;
+}
+
+#sidenav.menu-close {
+    width: 70px;
+}
+
+#sidenav.menu-open {
+    width: 240px;
+}
+
+#sidenav .avatar {
+    background-image: url('http://i.pravatar.cc/300');
+    background-size: cover;
+}
+
+#sidenav .mat-list-item-content {
+    padding: 0;
+}
+
+#sidenav .menu-item {
+    width: 100%;
+    border-radius: 0;
+    text-align: left;
+    padding: 0px;
+}
+
+#sidenav .menu-item:hover {
+  background: #eee;
+}
+#sidenav .menu-item mat-icon {
+    margin-right: 20px;
+    margin-left: 12px;
+}
+
+.dash-list h3 {
+    padding: 12px;
+}
+.main_nav{
+    background-color: #faf9f9;
+    border-bottom: 2px solid #f2eeee;
+}
+img.list-dsbrd{
+   width:40px;
+  height:40px;
+  margin-right: 16px;
+}
+.mat-flat-button{
+    min-width:0px !important;
+    color:  #686867 !important;
+    font-weight: 500 !important;
+}
+.dshbrd_user_name,.dshbrd_list,.mat-drawer{
+    background-color: #282828 !important;
+}
+
+.dash-user-title{
+     color:  #686867 !important;
+}
+.dashbrd_list_items{
+     margin-top:17% !important;
+}
+.dashbrd_title{
+    margin-left: 2%;
+}
+/* Middle container */
+.panel-info>.panel-heading {
+    color: #686868;
+    background-color: #f7f5f5;
+   
+}
+.panel-info {
+    border-color: #f7f5f5;
+}
+.panel-heading{
+
+    border-bottom:none;
+}
+
+.stage{
+    height:49px !important;
+    margin-top: 1%;
+}
+ .list{
+     background-color: #fe9251 !important;
+     margin-left: 10%;
+    width: 54% !important;
+    height: 62% !important;
+ }
+ /*Data table*/
+ table.table_data.mat-table{
+width: 100%;
+margin:20px auto;
+ }

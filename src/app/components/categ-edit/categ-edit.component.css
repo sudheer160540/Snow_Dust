@@ -1,0 +1,19 @@
+.catgry-form{
+    border: 1px solid #80808045;
+    padding-top: 38px;
+    padding-bottom: 20px;
+  }
+  .catg-input{
+    width: 75%;
+    height: 51px ;
+  }
+  .btn-catgry{
+    margin-left: 5%;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: #fe9251;
+      border: 1px solid #fe9251;
+      color:#fff;
+      margin-top:5%;
+      font-weight: 500;
+  }

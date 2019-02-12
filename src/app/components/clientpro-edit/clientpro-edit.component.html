@@ -1,0 +1,74 @@
+<div class="container catgry-form">
+  <form #editForm="ngForm" (ngSubmit)="updateClient(editForm.value)">
+
+    <fieldset>
+
+      <div class="form-group">
+
+        <div class="col-md-2">
+          <label for="control-label">Client Name</label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="clientName" placeholder="Client Name" class="form-control catg-input" required
+            [(ngModel)]="editdataAll.clientName" #clientId="ngModel">
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2">
+              <label for="control-label">Curent Project Code</label>
+            </div>
+            <div class="col-md-4">
+              <input type="text" name="projectCode" placeholder="Curent Project" class="form-control catg-input" required
+                [(ngModel)]="editdataAll.projectCode" #projectCode="ngModel">
+            </div>
+          </div>
+      </div>
+
+
+      <div class="catg-description">
+
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="control-label">Curent Project Name</label>
+          </div>
+          <div class="col-md-4">
+            <input type="text" name="projectName" placeholder="Curent Project" class="form-control catg-input" required
+              [(ngModel)]="editdataAll.projectName" #projectName="ngModel">
+          </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2">
+              <label for="control-label">Start Date</label>
+            </div>
+            <div class="col-md-4">
+              <input type="date" name="startDate" placeholder="Start Date" class="form-control catg-input" required
+                [(ngModel)]="editdataAll.startDate" #startDate="ngModel">
+            </div>
+          </div>
+ 
+      </div>
+
+
+      <div class="catg-description">
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="control-label">End Date</label>
+          </div>
+          <div class="col-md-4">
+            <input type="date" name="endDate" placeholder="End Date" class="form-control catg-input" required
+              [(ngModel)]="editdataAll.endDate" #endDate="ngModel">
+          </div>
+        </div>
+
+      </div>
+
+
+    </fieldset>
+    <div class="col-md-12 text-center">
+      <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="Upadate Client Details"
+        class="btn-catgry">
+    </div>
+
+  </form>
+</div>

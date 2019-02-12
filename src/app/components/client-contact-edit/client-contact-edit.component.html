@@ -1,0 +1,66 @@
+<div class="container catgry-form">
+  <form #updateForm="ngForm" (ngSubmit)="updateContact(updateForm.value)">
+
+    <div class="form-group">
+      <div class="col-md-2">
+        <label class="control-label">Client Name</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control product-input" name="clientName" [(ngModel)]="editdataAll.clientName">
+        <option value="">Select Client </option>
+        <option *ngFor="let lang of allclients.filteredData" [ngValue]="lang.id">
+        {{lang.clientName}}
+        </option>
+        </select>
+        </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-2">
+        <label class="control-label">Contact Name</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" name="contactName" placeholder="Contact Name" class="form-control product-input" required [(ngModel)]="editdataAll.contactName"
+          #productcode="ngModel">
+
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <div class="col-md-2">
+          <label class="control-label">Contact Number</label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="contactNo" placeholder="Contact Number" class="form-control product-input" required [(ngModel)]="editdataAll.contactNo"
+            #productname="ngModel">
+        </div>
+      </div>
+
+    <div class="form-group">
+      <div class="col-md-2">
+        <label class="control-label">Contact Email</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" name="contactEmail" placeholder="Contact Email" class="form-control product-input" required [(ngModel)]="editdataAll.contactEmail"
+          #productname="ngModel">
+
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-2">
+        <label class="control-label">Contact Designation</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" name="designation" placeholder="Contact Designation" class="form-control product-input" required [(ngModel)]="editdataAll.designation"
+          #productname="ngModel">
+
+      </div>
+    </div>
+
+  
+    <div class="row">
+      <div class=" col-md-12 text-center">
+        <input color="primary" style="margin-left:5%" type="submit" value="Update Contact" class="add-btn">
+      </div>
+    </div>
+  </form>
+</div>

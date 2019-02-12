@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-paginator-container{
+    border:1px solid #dddddd;
+}
+
+.catg-input-filter{
+    height: 43px !important;
+    padding-bottom: 20px !important;
+    background-color: #ffffff;
+    width: 33%;
+  }
+  mat-header-row.mat-header-row.ng-star-inserted{
+        background-color: #201d1d12 !important;
+    border: 1px solid #3e3e4138;
+  }
+  .mat-form-field-flex{
+    border: 1px solid #80808045 !important;
+  }
+  .catg-input{
+    width: 75%;
+    height:41px;
+    background-color: #f5f5f5c2;
+}

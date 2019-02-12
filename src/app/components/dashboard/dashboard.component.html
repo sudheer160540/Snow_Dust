@@ -1,0 +1,219 @@
+<mat-sidenav-content [ngStyle]="{ 'margin-left.px': contentMargin }">
+  <mat-selection-list class="dash-list">
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%"
+      fxLayoutAlign="center">
+      <div fxFlex="30%">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align:center">
+            <h4 class="announcement-heading">Products</h4>
+            <h2 class="announcement-text">235</h2>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="30%">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align:center">
+            <h4 class="announcement-heading">In-store</h4>
+            <h2 class="announcement-text">235</h2>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="30%">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align:center">
+            <h4 class="announcement-heading">Todays-pickup</h4>
+            <h2 class="announcement-text">235</h2>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="30%">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align:center">
+            <h4 class="announcement-heading">Others</h4>
+            <h2 class="announcement-text">235</h2>
+          </div>
+        </div>
+      </div><!-- /.row -->
+    </div>
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%"
+      fxLayoutAlign="center">
+
+      <div fxFlex="30%">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align:center">
+            <h4 class="announcement-heading">Pending Orders</h4>
+            <h2 class="announcement-text">235</h2>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="30%">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align:center">
+            <h4 class="announcement-heading">At Client</h4>
+            <h2 class="announcement-text">235</h2>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="30%">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align:center">
+            <h4 class="announcement-heading">Todays-pickup</h4>
+            <h2 class="announcement-text">235</h2>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="30%">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align:center">
+            <h4 class="announcement-heading">Total Deliveries</h4>
+            <h2 class="announcement-text">235</h2>
+          </div>
+        </div>
+      </div><!-- /.row -->
+    </div>
+    <br>
+    <br>
+    <form #myForm="ngForm">
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%"
+        fxLayoutAlign="center">
+        <div fxFlex="30%">
+          <mat-form-field appearance="outline">
+            <input matInput [matDatepicker]="fromDate" id="inputDateHiredData" [ngModel]=""
+              #inputDateHiredData="ngModel" name="inputDateHiredData" placeholder="From Date">
+            <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+            <mat-datepicker #fromDate></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div fxFlex="30%">
+          <mat-form-field appearance="outline">
+            <input matInput [matDatepicker]="fromDate1" id="inputDateHiredData1" [ngModel]=""
+              #inputDateHiredData1="ngModel" name="inputDateHiredData1" placeholder="To Date">
+            <mat-datepicker-toggle matSuffix [for]="fromDate1"></mat-datepicker-toggle>
+            <mat-datepicker #fromDate1></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div fxFlex="30%">
+          <div class="form-group">
+            <select class="form-control stage" name="country">
+              <option>Stage</option>
+              <option *ngFor="let item of countryData" [value]="item">
+                {{item}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div fxFlex="30%">
+          <button mat-raised-button color="accent" class="list">List</button>
+        </div>
+      </div>
+    </form>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort class="table_data">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+
+        <!-- Progress Column -->
+        <ng-container matColumnDef="progress">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+          <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="color">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Color </th>
+          <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+
+    <!-- <mat-form-field>
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+
+                        <div class="mat-elevation-z8 data-table">
+                          <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
+                        
+                            
+                            <ng-container matColumnDef="id">
+                              <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+                              <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+                            </ng-container>
+                        
+                          
+                            <ng-container matColumnDef="name">
+                              <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                              <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+                            </ng-container>
+                        
+                          
+                            <ng-container matColumnDef="amount">
+                              <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
+                              <mat-cell *matCellDef="let row">{{row.amount}}</mat-cell>
+                            </ng-container>
+                        
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                          </mat-table>
+                        
+                          <mat-paginator #paginator
+                            [length]="dataSource.data.length"
+                            [pageIndex]="0"
+                            [pageSize]="6"
+                            [pageSizeOptions]="[7, 50, 100, 250]">
+                          </mat-paginator>
+                        </div> -->
+    <!-- <div  class="container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+                      <div class="example-header">
+                        <mat-form-field>
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="filter">
+                        </mat-form-field>
+                        </div> -->
+
+
+    <!-- <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                        
+                        
+                        <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header > No. </th>
+                        <td mat-cell *matCellDef="let note"> {{note.id}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="title">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                        <td mat-cell *matCellDef="let note"> {{note.title}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                        <td mat-cell *matCellDef="let note"> {{note.date | date:'yyyy-MM-dd'}} </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        
+                        </table>
+                        <mat-paginator #paginator [pageSize]="2" [pageSizeOptions]="[5,10,20]" showFirstLastButtons>
+                        </mat-paginator> -->
+
+
+
+
+  </mat-selection-list>
+</mat-sidenav-content>

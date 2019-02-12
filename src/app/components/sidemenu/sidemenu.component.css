@@ -1,0 +1,172 @@
+.app-sidenav-container {
+    flex:1;
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    position: fixed;
+  }
+  
+  .app-sidenav-content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
+
+
+  /********Side-menu********************/
+#sidenavContainer {
+    margin-top: 64px;
+}
+
+#sidenav {
+    width: 240px;
+}
+
+#sidenav.menu-close {
+    width: 70px;
+}
+
+#sidenav.menu-open {
+    width: 240px;
+}
+
+.avatar {
+    background-image: url('http://i.pravatar.cc/300');
+    background-size: cover;
+}
+
+#sidenav .mat-list-item-content {
+    padding: 0;
+}
+
+#sidenav .menu-item {
+    width: 100%;
+    border-radius: 0;
+    text-align: left;
+    padding: 0px;
+}
+
+#sidenav .menu-item:hover {
+  background: #eee;
+}
+#sidenav .menu-item mat-icon {
+    margin-right: 20px;
+    margin-left: 12px;
+}
+
+.dash-list h3 {
+    padding: 12px;
+}
+.main_nav{
+    background-color: #faf9f9;
+    border-bottom: 2px solid #f2eeee;
+}
+img.list-dsbrd{
+   width:40px;
+  height:40px;
+  margin-right: 16px;
+}
+.mat-flat-button{
+    min-width:0px !important;
+    color:  #686867 !important;
+    font-weight: 500 !important;
+}
+.dshbrd_user_name,.dshbrd_list,.mat-drawer{
+    background-color: #282828 !important;
+}
+
+.dash-user-title{
+     color:  #686867 !important;
+}
+.dashbrd_list_items{
+     margin-top:17% !important;
+}
+.dashbrd_title{
+    margin-left: 2%;
+}
+.menu-button {
+    transition: 300ms ease-in-out;
+    transform: rotate(0deg);
+  }
+  .menu-button.rotated {
+    transform: rotate(180deg);
+  }
+  .submenu {
+    overflow-y: hidden;
+    transition: 300ms ease-in-out;
+    height: 0;
+  }
+  .submenu.expanded {
+    height: 144px;
+  }
+
+
+/****Accordian Start for Sidenav*****************/
+.sidenav-expans{
+  background-color: #282828 !important;
+  box-shadow: none !important;
+  margin-bottom: 8%;
+  color:#fff;
+}
+mat-panel-title{
+  color:#686868;
+}
+.mat-nav-list .mat-list-item {
+  cursor: pointer;
+  outline: 0;
+  color: #d9bdb4;
+  margin-left: 21%;
+  color:#686868;
+}
+/* .avatar {
+  background-image: url('http://i.pravatar.cc/300');
+  background-size: cover;
+} */
+.userprofile{
+  background-color: #282828;
+  color:#686868;
+  margin-bottom: 18%;
+}
+.sidemenu-subtitle{
+  color:#686868;
+}
+
+.dsbrd-panl-title{
+  margin-top:12%;
+  margin-top: 6%;
+  font-size: 16px;
+}
+::ng-deep .mat-expansion-indicator::after {
+  color: #686868 !important;
+}
+::ng-deep .mat-drawer-inner-container{
+  overflow-y: hidden !important;;
+} 
+.mat-list-dsbrd{
+  cursor: pointer;
+  outline: 0;
+  color: #d9bdb4;
+  color:#686868;
+  margin-bottom: 17%;
+}
+mat-nav-list.mat-nav-list.mat-list-base{
+  overflow-x: hidden !important;
+ }
+   
+ .app-sidenav {
+  padding: 40px;
+}
+.mat-toolbar-row, .mat-toolbar-single-row{
+  padding:0px !important
+}
+.mat-sidenav-content.mat-drawer-content.mat-sidenav-content.ng-star-inserted{
+  background-color: #ffffff;
+}
+.wraper{
+  background-color: #ffffff !important;
+  margin-top:4%;
+}
+.mat-drawer-container{
+  background-color: #ffffff !important;
+}

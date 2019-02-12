@@ -1,0 +1,44 @@
+<section class="login-block">
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutWrap   fxLayoutAlign="center">
+
+        <div fxFlex="70%">
+    <img class="form_img" src="../../../assets/images/login.png">
+    <div class="img-caption">
+      <div class="banner-text">
+          <h2>Inventory <br> Management</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br> eiusmod tempor incididunt ut labore et dolore magna aliqua.<br> Ut enim ad minim veniam, quis nostrud exercitation</p>
+      	
+</div>
+</div>
+        </div>
+
+		<div fxFlex="40%" class="login_form">
+		    <h1 class="login-text">Forgot Password</h1>
+                <form (ngSubmit)="onSubmit()" #f="ngForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control input-login" id="email"  required [(ngModel)]="customer.email" name="email" #email="ngModel" placeholder="Enter Email Address">
+                      </div>
+                      <div class="form-group">
+                          <input type="text" class="form-control input-login" id="reset"  required [(ngModel)]="customer.reset" name="reset" #reset="ngModel" placeholder="Enter Reset Code">
+                        </div>   
+                          <div class="form-group">
+                              <input type="text" class="form-control input-login" id="password"  required [(ngModel)]="customer.password" name="password" #password="ngModel" placeholder="Password">
+                            </div> 
+                            <div class="form-group">
+                                <input type="text" class="form-control input-login" id="pass"  required [(ngModel)]="customer.pass" name="pass" #pass="ngModel" placeholder="Password">
+                              </div> 
+                  <input type="submit"  class="login_btn"  value="Login" >
+              
+                  <!-- <pre>{{f.value | json}}</pre> -->
+                </form> 
+                <p class="forgot_txt" >Forgot Password?</p>
+
+		</div>
+
+</div>
+<div class="container">
+    <div fxFlex="120%" class="footer-heading" >
+        <p>Powered by Soulpage IT Solutions</p>
+      </div>
+    </div>
+</section>

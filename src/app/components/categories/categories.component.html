@@ -1,0 +1,107 @@
+<div class="container catgry-form">
+<form #addForm="ngForm" (ngSubmit)="add(addForm.value)">
+
+    <fieldset>
+      <div class="form-group">
+        <div class="col-md-2">
+          <label for="control-label">Category Code</label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="categoryCode" placeholder="Category Code" class="form-control catg-input" required [(ngModel)]="user.categoryCode"
+            #categourycode="ngModel">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-2">
+          <label for="control-label">Category Name</label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="categoryName" placeholder="Category Name" class="form-control catg-input" required [(ngModel)]="user.categoryName"
+            #categouryname="ngModel">
+        </div>
+      </div>
+
+      <div class="catg-description">
+      <div class="form-group ">
+        <div class="col-md-2">
+          <label for="control-label">Description</label>
+        </div>
+        <div class="col-sm-4">
+          <textarea class="form-control" name="notes" id="notes" rows="1" placeholder="Add additional notes here."
+            [(ngModel)]="user.description" class="catg-input"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group ">
+        <div class="col-md-2">
+          <label for="control-label">Parent Category</label>
+        </div>
+        <div class="col-sm-4">
+          <select class="form-control catg-input" name="parentId" [(ngModel)]="user.parentId">
+            <option [ngValue]="Select">Select Parent Category</option>
+            <option *ngFor="let lang of dataSource.filteredData" [ngValue]="lang.id">
+              {{lang.categoryName}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    </fieldset>
+<div class="col-md-12 text-center">
+    <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="Add Category" class="btn-catgry">
+  </div>
+
+  </form>
+</div>
+
+<div class="container">
+  <mat-form-field class="catg-input-filter">
+    <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search" >
+  </mat-form-field>
+  <div>
+    <mat-table [dataSource]="dataSource" matSort class="catgry-table">
+
+      <ng-container matColumnDef="catgrycode">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Category Code </mat-header-cell>
+        <mat-cell *matCellDef="let dataSource"> {{dataSource.categoryCode}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="catgryname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Category Name </mat-header-cell>
+        <mat-cell *matCellDef="let dataSource"> {{dataSource.categoryName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="catgdesc">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+        <mat-cell *matCellDef="let dataSource"> {{dataSource.description}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="catgparent">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Parent Category </mat-header-cell>
+        <mat-cell *matCellDef="let dataSource"> 
+      
+            <span *ngIf="dataSource.parentData"> {{dataSource.parentData.categoryName}}</span>
+            <span *ngIf="!dataSource.parentData"> NA</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actionsColumn">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Actioncolumns
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button class="editbutton-prdct" *ngIf="!row.editing" mat-raised-button color="accent" (click)="catgedit(row.id)"
+            [routerLink]="['/categedit']"> Edit</button>
+          <button class="delbutton" mat-raised-button color="warn" (click)="delete(row.id)"> Delete</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>

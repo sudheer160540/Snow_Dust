@@ -1,0 +1,14 @@
+.product-input{
+    width: 75%;
+    height: 51px;
+    margin-bottom: 9%;
+  }
+  .add-btn{
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fe9251;
+    border: 1px solid #fe9251;
+    color:#fff;
+    margin-top:5%;
+    font-weight: 500;
+  }

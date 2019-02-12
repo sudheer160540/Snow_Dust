@@ -1,0 +1,156 @@
+<div class="container catgry-form">
+  <form #addForm="ngForm" (ngSubmit)="getallOrdersBycat(addForm.value)">
+
+    <div class="row">
+      <div class="form-group">
+        <div class="col-md-2">
+          <label for="control-label"> Search by Order Number </label>
+        </div>
+      </div>
+      <div class="col-sm-8">
+          <select class="form-control catg-input" name="orderNo" [(ngModel)]="user.orderNo">
+              <option value="">Select orderNo </option>
+              <option *ngFor="let lang of allorders.filteredData" [ngValue]="lang.orderNo">
+                {{lang.orderNo}}
+              </option>
+            </select>
+      </div>
+      <div class="col-md-2">
+        <p>[OR]</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <div class="col-md-2">
+          <label for="control-label"> client </label>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <select class="form-control catg-input" name="clientId" [(ngModel)]="user.clientId">
+          <option value="">...Search and select Product Category...</option>
+          <option *ngFor="let cat of allorders.filteredData" [ngValue]="cat.id">
+            <!-- CategorieData -->
+            {{cat.clientId}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+
+    <!-- <div class="col-md-12 text-center">
+      <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="Get Items to Allocate" class="btn-catgry">
+    </div> -->
+    <div class="col-md-12 text-center">  
+      <button class="editbutton" type="button" mat-raised-button color="accent" (click)="GetItemstoAllocate(user.orderNo,user.clientId)">Get Items to Allocate </button>
+         </div>
+
+
+<!----First Table-->
+<div class="container">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <div>
+    <mat-table [dataSource]="GetItemsdata" matSort class="catgry-table">
+
+      <ng-container matColumnDef="catgitm">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Category of Item </mat-header-cell>
+        <mat-cell *matCellDef="let GetItemsdata"> 
+          {{GetItemsdata.CategorieData.categoryName}}
+         </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="requiredqty">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Required Qty </mat-header-cell>
+      <mat-cell *matCellDef="let GetItemsdata"> 
+        {{GetItemsdata.quantity}}
+       </mat-cell>
+  </ng-container>
+
+        <ng-container matColumnDef="requiredDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Required  by Date</mat-header-cell>
+            <mat-cell *matCellDef="let GetItemsdata"> {{GetItemsdata.requiredDate | date: 'dd/MM/yyyy'}} </mat-cell>
+          </ng-container>
+
+      <ng-container matColumnDef="actionsColumn">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Actioncolumns
+        </mat-header-cell>
+        <mat-cell *matCellDef="let GetItemsdata">
+          <button class="delbutton" mat-raised-button color="warn" (click)="viewAvlblty(GetItemsdata.categorieId)"> View Availability</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
+
+
+<!------------------Second Table------------------>
+
+ <div class="container">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <div>
+    <mat-table [dataSource]="viewAvlbltyData" matSort class="catgry-table">
+
+        <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Select
+            </mat-header-cell>
+            <mat-cell *matCellDef="let viewAvlbltyData;let i=index">
+                <mat-checkbox  name="checked{{i}}" id="checked{{i}}"  [(ngModel)]="checked[i]" [checked]="true" (change)="toggleVisibility($event,viewAvlbltyData.id)">Checked </mat-checkbox>
+            </mat-cell>
+          </ng-container>
+
+
+        <ng-container matColumnDef="SKU/SerialNumber">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> SKU/Serial Number </mat-header-cell>
+          <mat-cell *matCellDef="let viewAvlbltyData"> {{viewAvlbltyData.SKU_SI_No}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Inward/PurchaseDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Inward/Purchase Date</mat-header-cell>
+          <mat-cell *matCellDef="let viewAvlbltyData"> 
+            <span *ngIf="viewAvlbltyData.stock">
+                {{viewAvlbltyData.stock.purchaseDate| date: 'dd/MM/yyyy'}}
+            </span>
+            <span *ngIf="!viewAvlbltyData.stock">
+              NA
+            </span>
+          </mat-cell>
+        </ng-container>
+     
+      <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
+        <!-- <mat-cell *matCellDef="let viewAvlbltyData"> {{viewAvlbltyData.quantity}}</mat-cell> -->
+        <mat-cell *matCellDef="let viewAvlbltyData"> 
+            <span *ngIf="viewAvlbltyData.stock">
+                {{viewAvlbltyData.stock.quantity}}
+            </span>
+            <span *ngIf="!viewAvlbltyData.stock">
+              NA
+            </span>
+           
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[2, 2, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div> 
+<div class="col-md-12 text-center">
+  <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="Allocate Selected" class="btn-catgry" (click)="allocselect()">
+</div>
+
+
+</form>
+</div>

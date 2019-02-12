@@ -1,0 +1,193 @@
+<div class="container catgry-form">
+
+    <form #addForm="ngForm" (ngSubmit)="getAllProducts(addForm.value)">
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="control-label"> Search By SKU/Serial </label>
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-control catg-input" name="SKU_SI_No" [(ngModel)]="user.SKU_SI_No">
+                        <option value="">...Search and select SKU / Serial Number...</option>
+                        <option *ngFor="let lang of dataSource.filteredData" [ngValue]="lang.SKU_SI_No">
+                            {{lang.SKU_SI_No}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <p>[OR]</p>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="control-label"> Search By Product Code </label>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <select class="form-control catg-input" name="productCode" [(ngModel)]="user.productCode">
+                    <option value="">...Search and select Product Code...</option>
+                    <option *ngFor="let lang of dataSource.filteredData" [ngValue]="lang.productCode">
+                        {{lang.productCode}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <p>[OR]</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="control-label"> Search By Category </label>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <select class="form-control catg-input" name="categoryName" [(ngModel)]="user.catId">
+                    <option value="">...Search and select Product Category...</option>
+                    <option *ngFor="let cat of catdataSource.filteredData" [ngValue]="cat.categoryName">
+                        <!-- CategorieData -->
+                        {{cat.categoryName}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+        <div class="col-md-12 text-center">
+            <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="Get Product"
+                class="btn-catgry">
+        </div>
+    </form>
+    
+</div>
+
+
+<form #addForm="ngForm" (ngSubmit)="addStock(addForm.value)">
+
+    <div class="container">
+  
+            <mat-form-field class="catg-input-filter">
+                    <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search" >
+                  </mat-form-field>
+        <div>
+            <mat-table [dataSource]="SearchDataSource" matSort class="catgry-table">
+
+                <ng-container matColumnDef="skuNo">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> SKU/Serial Number </mat-header-cell>
+                    <!-- <mat-cell *matCellDef="let dataSource"> {{dataSource.SKU_SI_No}} </mat-cell> -->
+                    <mat-cell *matCellDef="let dataSource">
+                        <mat-form-field>
+                            <input matInput name="productId" placeholder="" required [(ngModel)]="dataSource.SKU_SI_No">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="date">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Purchase/Inward Date </mat-header-cell>
+                    <mat-cell *matCellDef="let dataSource">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker" name="purchaseDate" placeholder="Choose a date"
+                                required [(ngModel)]="user.purchaseDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="quantity">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
+                    {{dataSource.SKU_SI_No}}
+                    <mat-cell *matCellDef="let dataSource">
+                        <mat-form-field>
+                            <input matInput name="quantity" placeholder="Enter Quantity" required
+                                [(ngModel)]="user.quantity">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="remarks">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Remarks </mat-header-cell>
+                        {{dataSource.remarks}}
+                        <mat-cell *matCellDef="let dataSource">
+                            <mat-form-field>
+                                <input matInput name="remarks" placeholder="Enter Remarks" required
+                                    [(ngModel)]="user.remarks">
+                            </mat-form-field>
+                        </mat-cell>
+                    </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+    <div class="col-md-12 text-center">
+        <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="Add Stock" class="btn-catgry">
+    </div>
+</form>
+<!----SECONTABLE----------->
+<div class="container">
+     <mat-form-field class="catg-input-filter">
+    <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search" >
+  </mat-form-field>
+    <div>
+        <mat-table [dataSource]="dataSource1" matSort class="catgry-table">
+                <ng-container matColumnDef="SKU_SI_No">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> SKU SI No </mat-header-cell>
+                        <mat-cell *matCellDef="let dataSource1"> {{dataSource1.productId}} </mat-cell>
+                    </ng-container>
+        
+            <ng-container matColumnDef="quantity">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
+                <mat-cell *matCellDef="let dataSource1"> {{dataSource1.quantity}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="purchaseDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Purchase Date </mat-header-cell>
+                <mat-cell *matCellDef="let dataSource1"> {{dataSource1.purchaseDate | date}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="remarks">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Remarks </mat-header-cell>
+                    <mat-cell *matCellDef="let dataSource1"> {{dataSource1.remarks}} </mat-cell>
+                </ng-container>
+            <!-- <ng-container matColumnDef="Number">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Number </mat-header-cell>
+              <mat-cell *matCellDef="let dataSource"> {{dataSource.contactNo}}
+              </mat-cell>
+            </ng-container>
+      
+            <ng-container matColumnDef="Email">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+              <mat-cell *matCellDef="let dataSource"> {{dataSource.contactEmail}}
+              </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="desig">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Designation </mat-header-cell>
+                <mat-cell *matCellDef="let dataSource"> {{dataSource.designation}}
+                </mat-cell>
+              </ng-container> -->
+
+            <ng-container matColumnDef="actionsColumn">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Actioncolumns
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button class="editbutton" *ngIf="!row.editing" mat-raised-button color="accent"
+                        (click)="contaEdit(row.id)" [routerLink]="['/productedit']"> Edit</button>
+                    <button class="delbutton" mat-raised-button color="warn" (click)="deleteCont(row.id)">
+                        Delete</button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
+
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

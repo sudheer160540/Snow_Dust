@@ -1,0 +1,73 @@
+<div class="container catgry-form">
+  <form #searchDet="ngForm" (ngSubmit)="searchDetails(searchDet.value)">
+      <div class="row">
+          <div class="form-group">
+              <div class="col-md-2">
+                  <label for="control-label"> Search By SKU/Serial </label>
+              </div>
+              <div class="col-sm-8">
+                  <select class="form-control catg-input" name="SKU_SI_No" [(ngModel)]="user.SKU_SI_No">
+                      <option value="">...Search and select SKU / Serial Number...</option>
+                      <option *ngFor="let res of getdetailsdata " [ngValue]="res.SKU_SI_No">
+                          {{res.SKU_SI_No}}
+                      </option>
+                  </select>
+              </div>
+              <div class="col-md-2">
+                  <p>[OR]</p>
+              </div>
+          </div>
+      </div>
+      <br>
+
+      <div class="row">
+          <div class="form-group">
+              <div class="col-md-2">
+                  <label for="control-label"> Search By Product Code </label>
+              </div>
+          </div>
+          <div class="col-sm-8">
+              <select class="form-control catg-input" name="productCode" [(ngModel)]="user.productCode">
+                  <option value="">...Search and select Product Code...</option>
+                  <option *ngFor="let res of getdetailsdata" [ngValue]="res.productCode">
+                      {{res.productCode}}
+                  </option>
+              </select>
+          </div>
+          <div class="col-md-2">
+              <p>[OR]</p>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="form-group">
+              <div class="col-md-2">
+                  <label for="control-label"> Search By Category </label>
+              </div>
+          </div>
+          <div class="col-sm-8">
+              <select class="form-control catg-input" name="categoryName" [(ngModel)]="user.CategorieData">
+                  <option value="">...Search and select Product Category...</option>
+                  <option *ngFor="let res of searchByCat" [ngValue]="res.CategorieData.categoryName">
+                     <span >
+
+                        {{res.CategorieData.categoryName }}
+                     </span> 
+                 
+  
+                  </option>
+              </select>
+          </div>
+          <div class="col-md-2">
+          </div>
+      </div>
+      <div class="col-md-12 text-center">
+          <!-- <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="Get Product" class="btn-catgry"> -->
+                      
+          <button mat-raised-button color="primary" style="margin-left:5%" type="button"  (click)="searchDetail(user.SKU_SI_No,user.productCode, user.CategorieData)"  class="btn-catgry">Get Product</button>
+          
+      </div>
+
+
+  </form>
+</div>

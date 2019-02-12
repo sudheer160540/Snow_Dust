@@ -1,0 +1,44 @@
+
+  .catg-input{
+    width: 75%;
+    height: 51px ;
+  }
+  .btn-catgry{
+    margin-left: 5%;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: #fe9251;
+      border: 1px solid #fe9251;
+      color:#fff;
+      margin-top:5%;
+      font-weight: 500;
+  }
+  .editbutton{
+    margin-right:12px;
+  }
+  .catg-input-filter {
+    height: 43px !important;
+    padding-bottom: 20px !important;
+    background-color: #ffffff;
+    width: 33%;
+    margin-bottom: 2%;
+  }
+  .catgry-form{
+    border: 1px solid #80808045;
+    padding-top: 38px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    margin-bottom: 2%;
+    background-color: #fff;
+  }
+  mat-table.catgry-table.mat-table{
+    border: 1px solid #3e3e4138 !important;
+  }
+  mat-row.mat-row.ng-star-inserted{
+    margin-top:2% !important;
+  }
+  .catg-input{
+    width: 70%;
+    height: 43px;
+     background-color: #f5f5f594;
+  }

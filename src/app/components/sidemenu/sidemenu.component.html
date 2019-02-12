@@ -1,0 +1,235 @@
+<mat-sidenav-container class="app-sidenav-container" autosize dark-theme>
+    <mat-sidenav #sidenav class="app-sidenav mat-elevation-z15" [opened]="!isScreenSmall()" [mode]="isScreenSmall() ? 'over' : 'side'">
+        <mat-nav-list>
+            <!-- <mat-card class="userprofile">
+                <mat-card-header>
+                        <div mat-card-avatar class="avatar"></div>
+                        <mat-card-title class="dash-user-title">John Doe</mat-card-title>
+                        <mat-card-subtitle class="sidemenu-subtitle">Internal</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card> -->
+               
+                    <mat-accordion>
+                        <mat-list  [routerLink]="['/dashboard']">
+                            <mat-list-item class="mat-list-dsbrd">
+                                    <mat-panel-title>
+                                      <img src="../../../assets/images/dashbrd.png" class="list-dsbrd">
+                                      <span class="dsbrd-panl-title">Dashboard</span>
+                                    </mat-panel-title>
+                                </mat-list-item>
+                                </mat-list>
+
+
+                         <mat-expansion-panel class="sidenav-expans">
+                                <mat-expansion-panel-header class="sidenav-list-expansion">
+                                    <mat-panel-title>
+                                      <img src="../../../assets/images/production.png" class="list-dsbrd">
+                                      <span class="dsbrd-panl-title">Product Mgmt</span>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <mat-list-item [routerLink]="['/categories']">Categories</mat-list-item>
+                                <mat-list-item [routerLink]="['/products']">Product</mat-list-item>
+                            </mat-expansion-panel>
+        
+                            <mat-expansion-panel class="sidenav-expans" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <img src="../../../assets/images/inventory.png" class="list-dsbrd">
+                                        <span class="dsbrd-panl-title">Inventory Mgmt</span>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <mat-list-item [routerLink]="['/stock']">Stock</mat-list-item>
+                            </mat-expansion-panel>
+        
+        
+                            <mat-expansion-panel class="sidenav-expans" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                            <img src="../../../assets/images/relation.png" class="list-dsbrd">
+                                            <span class="dsbrd-panl-title">Clients Mgmt</span>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <mat-list-item [routerLink]="['/client']">Clients</mat-list-item>
+                                <mat-list-item [routerLink]="['/clientproject']">Clients Projects</mat-list-item>
+                                <mat-list-item [routerLink]="['/clientcontactPage']">Clients Contacts</mat-list-item>
+                            </mat-expansion-panel>
+        
+        
+                            <mat-expansion-panel class="sidenav-expans" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                                <img src="../../../assets/images/orders.png" class="list-dsbrd">
+                                                <span class="dsbrd-panl-title">Orders Mgmt</span>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <mat-list-item  [routerLink]="['/orders']">Orders</mat-list-item>
+                                    <mat-list-item  [routerLink]="['/matallocation']">Material allocation</mat-list-item>
+                                </mat-expansion-panel>
+
+
+                                <mat-expansion-panel class="sidenav-expans" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <img src="../../../assets/images/store.png" class="list-dsbrd">
+                                            <span class="dsbrd-panl-title">Store Mgmt</span>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <mat-list-item  [routerLink]="['/workflow']">Workflow</mat-list-item>
+                                    <mat-list-item  [routerLink]="['/momentregister']">Moment Register</mat-list-item>
+                                </mat-expansion-panel>
+
+                                <mat-expansion-panel class="sidenav-expans" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <img src="../../../assets/images/deliver.png" class="list-dsbrd">
+                                            <span class="dsbrd-panl-title">Delivery Mgmt</span>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <mat-list-item  [routerLink]="['/']">Inward Deliveries</mat-list-item>
+                                    <mat-list-item  [routerLink]="['/']">Outward Deliveries</mat-list-item>
+                                </mat-expansion-panel>
+
+                                <mat-expansion-panel class="sidenav-expans" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <img src="../../../assets/images/invoice.png" class="list-dsbrd">
+                                            <span class="dsbrd-panl-title">Invoice Mgmt</span>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <mat-list-item  [routerLink]="['/']">Invoices</mat-list-item>
+                                </mat-expansion-panel>
+
+                        </mat-accordion>
+                        
+                        <mat-list id="menus">
+                <!-- <mat-card class="dshbrd_user_name">
+                    <mat-card-header>
+                        <div mat-card-avatar class="avatar"></div>
+                        <mat-card-title class="dash-user-title">John Doe</mat-card-title>
+                        <mat-card-subtitle>Internal</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+
+
+                <mat-list>
+                    <mat-list-item>
+                        <img src="../../../assets/images/production.png" class="list-dsbrd">
+                        Product Mgmt
+                        <button mat-button mat-icon-button (click)="showSubmenu = !showSubmenu">
+                            <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}">expand_more</mat-icon>
+                        </button>
+                    </mat-list-item>
+                    <div class="submenu" [ngClass]="{'expanded' : showSubmenu}">
+                        <mat-list-item [routerLink]="['/categories']">Categories</mat-list-item>
+                        <mat-list-item [routerLink]="['/products']">Product</mat-list-item>
+                    </div>
+                </mat-list>
+
+                <mat-list>
+                    <mat-list-item>
+                        <img src="../../../assets/images/inventory.png" class="list-dsbrd">Inventory Mgmt
+                        <button mat-button mat-icon-button (click)="showSubmenu1 = !showSubmenu1">
+                            <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu1}">expand_more</mat-icon>
+                        </button>
+                    </mat-list-item>
+                    <div class="submenu" [ngClass]="{'expanded' : showSubmenu1}">
+                        <mat-list-item [routerLink]="['/stock']">Stock</mat-list-item>
+                    </div>
+                </mat-list>
+
+                <mat-list>
+                    <mat-list-item>
+                        <img src="../../../assets/images/relation.png" class="list-dsbrd">Clients Mgmt
+
+                        <button mat-button mat-icon-button (click)="showSubmenu2 = !showSubmenu2">
+                            <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu2}">expand_more</mat-icon>
+                        </button>
+                    </mat-list-item>
+                    <div class="submenu" [ngClass]="{'expanded' : showSubmenu2}">
+                        <mat-list-item [routerLink]="['/client']">Clients</mat-list-item>
+                        <mat-list-item [routerLink]="['/clientproject']">Clients Projects</mat-list-item>
+                        <mat-list-item [routerLink]="['/clientcontactPage']">Clients Contacts</mat-list-item>
+                    </div>
+                </mat-list>
+
+
+                <mat-list-item [routerLink]="['/orders']">
+                        <img src="../../../assets/images/relation.png" class="list-dsbrd">Orders
+
+                        <button mat-button mat-icon-button >
+                            <mat-icon class="menu-button">expand_more</mat-icon>
+                        </button>
+                    </mat-list-item> -->
+
+
+
+
+                <!-- 
+                <mat-list-item class="dashbrd_list_items" [routerLink]="['/products']">
+                    <button class="menu-item dshbrd_list" mat-flat-button>
+                        <img src="../../../assets/images/production.png" class="list-dsbrd">Products Management</button>
+                </mat-list-item>
+
+
+
+                <mat-list-item class="dashbrd_list_items" [routerLink]="['/stock']">
+                    <button class="menu-item dshbrd_list" mat-flat-button>
+                        <img src="../../../assets/images/invoice.png" class="list-dsbrd">Stock</button>
+                </mat-list-item>
+                <mat-list-item class="dashbrd_list_items">
+                    <button class="menu-item dshbrd_list" mat-flat-button>
+                        <img src="../../../assets/images/inventory.png" class="list-dsbrd">Inventory Management</button>
+                </mat-list-item>
+
+                <mat-list-item class="dashbrd_list_items" [routerLink]="['/client']">
+                    <button class="menu-item dshbrd_list" mat-flat-button>
+                        <img src="../../../assets/images/relation.png" class="list-dsbrd">Clients Management</button>
+                </mat-list-item>
+
+                <mat-list-item class="dashbrd_list_items">
+                    <button class="menu-item dshbrd_list" mat-flat-button>
+                        <img src="../../../assets/images/orders.png" class="list-dsbrd">Orders Management</button>
+                </mat-list-item>
+
+                <mat-list-item class="dashbrd_list_items">
+                    <button class="menu-item dshbrd_list" mat-flat-button>
+                        <img src="../../../assets/images/store.png" class="list-dsbrd">Store Management</button>
+                </mat-list-item>
+
+                <mat-list-item class="dashbrd_list_items">
+                    <button class="menu-item dshbrd_list" mat-flat-button>
+                        <img src="../../../assets/images/deliver.png" class="list-dsbrd">Delivery Management</button>
+                </mat-list-item>
+
+                <mat-list-item class="dashbrd_list_items">
+                    <button class="menu-item dshbrd_list" mat-flat-button>
+                        <img src="../../../assets/images/invoice.png" class="list-dsbrd">Invoice Management</button>
+                </mat-list-item>
+                <mat-list-item class="dashbrd_list_items" [routerLink]="['/clientcontact']">
+                    <button class="menu-item dshbrd_list" mat-flat-button>
+                        <img src="../../../assets/images/invoice.png" class="list-dsbrd">Client Contacts</button>
+                </mat-list-item>
+
+
+                <mat-list-item class="dashbrd_list_items" [routerLink]="['/categories']">
+                    <button class="menu-item dshbrd_list" mat-flat-button>
+                        <img src="../../../assets/images/dashbrd.png" class="list-dsbrd">categories
+                    </button>
+                </mat-list-item> -->
+
+
+
+            </mat-list>
+
+
+        </mat-nav-list>
+
+    </mat-sidenav>
+    <div class="app-sidenav-content">
+        <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+        <div class="wraper">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</mat-sidenav-container>

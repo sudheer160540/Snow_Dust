@@ -1,0 +1,35 @@
+.product-input{
+    padding: 21px;
+    width: 75%;
+    }
+    /* .product-input:focus,.select-parent:focus{
+      box-shadow: none !important;
+    } */
+    .select-parent{
+      border: none;
+      background-color: #fafafa;
+      border-bottom: 1px solid black;
+      width: 63%;
+      box-shadow: none !important;
+    }
+    .add-btn{
+      border-radius: 5px;
+      padding: 10px;
+      background-color: #fe9251;
+      border: 1px solid #fe9251;
+      color:#fff;
+      margin-top:5%;
+      font-weight: 500;
+    }
+  .catg-description{
+    margin-top:7%;
+  }
+  .catgry-form{
+    border: 1px solid #80808045;
+    padding-top: 38px;
+    padding-bottom: 20px;
+  }
+  .catg-input{
+    width: 75%;
+    height: 51px ;
+  }

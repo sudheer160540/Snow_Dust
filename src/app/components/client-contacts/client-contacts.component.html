@@ -1,0 +1,126 @@
+<div class="container catgry-form">
+  <form #addForm="ngForm" (ngSubmit)="addContact(addForm.value)">
+
+    <div class="form-group">
+      <div class="col-md-2">
+        <label class="control-label"> Client Name</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control catg-input" name="clientId" [(ngModel)]="user.clientId">
+          <option value="">Select Client </option>
+          <option *ngFor="let lang of allclients.filteredData" [ngValue]="lang.id">
+            {{lang.clientName}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-2">
+        <label class="control-label">Contact Name</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" name="contactName" placeholder="productcode" class="form-control catg-input" required
+          [(ngModel)]="user.contactName" #productcode="ngModel">
+
+      </div>
+    </div>
+    <br>
+    <div class="catg-description">
+      <div class="form-group">
+        <div class="col-md-2">
+          <label class="control-label">Contact No</label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="contactNo" placeholder="productname" class="form-control catg-input" required
+            [(ngModel)]="user.contactNo" #productname="ngModel">
+
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-2">
+          <label class="control-label">Contact Email</label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="contactEmail" placeholder="contactEmail" class="form-control catg-input" required
+            [(ngModel)]="user.contactEmail" #productname="ngModel">
+
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-2">
+          <label class="control-label">Designation</label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="designation" placeholder="designation" class="form-control catg-input" required
+            [(ngModel)]="user.designation" #productname="ngModel">
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class=" col-md-12 text-center">
+          <input color="primary" style="margin-left:5%" type="submit" value="Add Contact " class="add-btn">
+        </div>
+      </div>
+
+
+    </div>
+  </form>
+  {{categorylist}}
+  <br>
+  <br>
+  <br>
+</div>
+
+  <div class="container">
+      <mat-form-field class="catg-input-filter">
+          <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search" >
+        </mat-form-field>
+    <div>
+      <mat-table [dataSource]="dataSource" matSort class="catgry-table">
+
+        <ng-container matColumnDef="clientName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Client Name </mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.clientName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="contactName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Contact Name</mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.contactName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="number">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Number </mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.contactNo}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.contactEmail}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="designation">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Designation </mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.designation}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actionsColumn">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Actioncolumns
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <button class="editbutton" *ngIf="!row.editing" mat-raised-button color="accent" (click)="contaEdit(row.id)"
+              [routerLink]="['/productedit']"> Edit</button>
+            <button class="delbutton" mat-raised-button color="warn" (click)="deleteCont(row.id)"> Delete</button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>

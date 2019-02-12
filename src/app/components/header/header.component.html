@@ -1,0 +1,62 @@
+<mat-toolbar id="mainToolbar" class="main_nav">
+    <mat-icon (click)="onToolbarMenuToggle()" id="toolbarMenu">sort</mat-icon>
+    <span class="toolbar-spacer dashbrd_title">Dashboard</span>
+    <mat-icon class="toolbar-icon" matBadge="8" matBadgePosition="after" matBadgeColor="accent"> notifications_none</mat-icon>
+    <mat-icon class="toolbar-icon mail_icon">mail_outline</mat-icon>
+    <mat-icon class="toolbar-icon">input</mat-icon>
+  </mat-toolbar>
+  <mat-sidenav-container id="sidenavContainer" fullscreen>
+      <mat-sidenav mode="side" #sidenav id="sidenav" [class.menu-open]="isMenuOpen" [class.menu-close]="!isMenuOpen"  fxHide.sm="True" fxHide.xs="True" opened>
+        <mat-list id="menus">
+          <mat-card class="dshbrd_user_name">
+            <mat-card-header>
+              <div  mat-card-avatar class="avatar"></div>
+              <mat-card-title class="dash-user-title">John Doe</mat-card-title>
+              <mat-card-subtitle>Internal</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+    
+          <mat-list-item class="dashbrd_list_items">
+            <button class="menu-item dshbrd_list"  mat-flat-button>
+              <img src="../../../assets/images/dashbrd.png" class="list-dsbrd">Dashboard
+              </button>
+          </mat-list-item>
+    
+          <mat-list-item class="dashbrd_list_items">
+              <button  class="menu-item dshbrd_list" mat-flat-button>
+                  <img src="../../../assets/images/production.png" class="list-dsbrd">Products Management</button>
+            </mat-list-item>
+    
+            <mat-list-item class="dashbrd_list_items">
+                <button  class="menu-item dshbrd_list"  mat-flat-button>
+                    <img src="../../../assets/images/inventory.png" class="list-dsbrd">Inventory Management</button>
+              </mat-list-item>
+  
+              <mat-list-item class="dashbrd_list_items">
+                  <button  class="menu-item dshbrd_list"  mat-flat-button>
+                      <img src="../../../assets/images/relation.png" class="list-dsbrd">Clients Management</button>
+                </mat-list-item>
+  
+                <mat-list-item class="dashbrd_list_items">   
+                    <button  class="menu-item dshbrd_list"  mat-flat-button>
+                        <img src="../../../assets/images/orders.png" class="list-dsbrd">Orders Management</button>
+                  </mat-list-item>
+  
+                  <mat-list-item class="dashbrd_list_items">
+                      <button  class="menu-item dshbrd_list"  mat-flat-button>
+                          <img src="../../../assets/images/store.png" class="list-dsbrd">Store Management</button>
+                      </mat-list-item>
+  
+                    <mat-list-item class="dashbrd_list_items">
+                        <button  class="menu-item dshbrd_list"  mat-flat-button>
+                            <img src="../../../assets/images/deliver.png" class="list-dsbrd">Delivery Management</button>
+                        </mat-list-item>
+  
+                      <mat-list-item class="dashbrd_list_items"> 
+                          <button  class="menu-item dshbrd_list"  mat-flat-button>
+                              <img src="../../../assets/images/invoice.png" class="list-dsbrd">Invoice Management</button>
+                        </mat-list-item>
+    
+        </mat-list>
+      </mat-sidenav>
+    </mat-sidenav-container>

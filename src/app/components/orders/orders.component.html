@@ -1,0 +1,215 @@
+<div class="container catgry-form">
+    <form #addForm="ngForm" (ngSubmit)="confirmorder(addForm.value)">
+      <input type="hidden" name="isEdit" placeholder="Order Number" class="form-control catg-input" required
+      [(ngModel)]="user.isEdit" #productcode="ngModel">
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="control-label"> Order Number </label>
+          </div>
+          
+          <div class="col-sm-8">
+              <input type="text" name="orderno" placeholder="Order Number" class="form-control catg-input" required
+              [(ngModel)]="user.orderno" #productcode="ngModel">
+            </div>
+             
+          <div class="col-md-2">
+            <p>[OR]</p>
+          </div>
+        </div>
+      </div>
+      <br>
+  
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="control-label"> Client Name </label>
+          </div>
+        </div>
+        <div class="col-sm-8">
+            <select class="form-control catg-input" name="clientName" [(ngModel)]="user.clientName">
+                <option value="">Select Client </option>
+                <option *ngFor="let lang of dataSource.filteredData" [ngValue]="lang.id">
+                  {{lang.clientName}}
+                </option>
+              </select>
+        </div>
+        <div class="col-md-2">
+          <p>[OR]</p>
+        </div>
+      </div>
+  
+  
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-2">
+            <label for="control-label"> Project Name </label>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <select class="form-control catg-input" name="projectname" [(ngModel)]="user.projectName">
+            <option value="">...Search and select Product Category...</option>
+            <option *ngFor="let cat of dataSource1.filteredData" [ngValue]="cat.id">
+              <!-- CategorieData -->
+              {{cat.projectName}}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-2">
+        </div>
+      </div>
+  
+      <div class="row">
+          <div class="form-group">
+            <div class="col-md-2">
+              <label for="control-label"> Category </label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <select class="form-control catg-input" name="categoryName" [(ngModel)]="user.categoryName">
+              <option value="">...Search and select  Category...</option>
+              <option *ngFor="let cat of dataSource2.filteredData" [ngValue]="cat.id">
+                <!-- CategorieData -->
+                {{cat.categoryName}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-2">
+          </div>
+        </div>
+  
+        <div class="row">
+            <div class="form-group">
+              <div class="col-md-2">
+                <label for="control-label"> Quantity </label>
+              </div>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" name="quantity" placeholder="quantity" class="form-control catg-input" required
+                [(ngModel)]="user.addquantity" #productcode="ngModel">
+            </div>
+            <div class="col-md-2">
+            </div>
+          </div>
+      <!-- <div class="col-md-12 text-center">
+        <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="Add to Order" class="btn-catgry">
+      </div> -->
+      <div class="col-md-12 text-center">  
+     <button class="editbutton" type="button" mat-raised-button color="accent" (click)="getallOrdersBycat(user.categoryName)"> add to order </button>
+        </div>
+   
+  
+  
+  
+  <div class="container">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+      <div>
+        <mat-table [dataSource]="getallcatorders" matSort class="catgry-table">
+    
+          <!-- <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>categoryName </mat-header-cell>
+            <mat-cell *matCellDef="let dataSource"> {{dataSource.categoryName}} </mat-cell>
+          </ng-container> -->
+    
+          <ng-container matColumnDef="categoryName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Category Name </mat-header-cell>
+            <mat-cell *matCellDef="let getallcatorders"> {{getallcatorders.categoryName}} </mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="quantity">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
+            <mat-cell *matCellDef="let getallcatorders"> {{getallcatorders.quantity}}
+            </mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="stock">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Availability </mat-header-cell>
+            <mat-cell *matCellDef="let getallcatorders"> 
+                <!-- <span *ngIf="let getallcatorders"> {{getallcatorders.stock}}</span> -->
+                {{getallcatorders.stock}}
+            </mat-cell>
+          </ng-container>
+    
+    
+          <ng-container matColumnDef="actionsColumn">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Actioncolumns
+            </mat-header-cell>
+            <mat-cell  *matCellDef="let getallcatorders;let ind=index">
+              <button class="delbutton" mat-raised-button color="warn" (click)="deleteCatOrder(ind,getallcatorders.editId)"> Delete</button>
+            </mat-cell>
+          </ng-container>
+    
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+      <mat-form-field class="order-date">
+          <input matInput [matDatepicker]="picker" name="purchaseDate" placeholder="Choose a date"
+              required [(ngModel)]="user.purchaseDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  
+      <div class="col-md-12 text-center">
+          <input mat-raised-button color="primary" style="margin-left:5%" type="submit" value="confirm order" class="btn-catgry" (click)="delete(row.id)">
+        </div>
+  
+    </div>
+  </form>
+  </div>
+  
+  <div class="container">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+      <div>
+        <mat-table [dataSource]="getallConfirmOrder" matSort class="catgry-table">
+    
+          <ng-container matColumnDef="orderno">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> orderno</mat-header-cell>
+            <mat-cell *matCellDef="let getallConfirmOrder"> {{getallConfirmOrder.orderNo}} </mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="clientName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> clientName </mat-header-cell>
+            <mat-cell *matCellDef="let getallConfirmOrder"> {{getallConfirmOrder.ClientData.clientName}} </mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="projectName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> projectName </mat-header-cell>
+            <mat-cell *matCellDef="let getallConfirmOrder"> {{getallConfirmOrder.ProjectsData.projectName}}</mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="totalitems">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> totalitems </mat-header-cell>
+            <mat-cell *matCellDef="let getallConfirmOrder"> 
+                <span *ngFor="let data of getallConfirmOrder.orderCategories"> {{data.quantity}},</span>
+            </mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="purchaseDate">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Required Date </mat-header-cell>
+              <mat-cell *matCellDef="let getallConfirmOrder"> {{getallConfirmOrder.requiredDate}} </mat-cell>
+            </ng-container>
+    
+          <ng-container matColumnDef="actionsColumn">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Actioncolumns
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <button class="editbutton-prdct" *ngIf="!row.editing" mat-raised-button color="accent" (click)="editOrder(row.id)"
+              > Edit</button>
+              <button class="delbutton" mat-raised-button color="warn" (click)="deleteOrder(row.id)"> Delete</button>
+            </mat-cell>
+          </ng-container>
+    
+          <mat-header-row *matHeaderRowDef="displayedColumns3"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns3;"></mat-row>
+        </mat-table>
+    
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
