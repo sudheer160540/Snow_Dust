@@ -43,7 +43,7 @@ export class ClientsComponent implements OnInit {
     this.clntser.addClient(this.user).subscribe((res) => {
       console.log(res)
       this.getalldetails();
-      this.toastr.successToastr('Client saved');
+      this.toastr.successToastr('Client Created Succesfully');
 
     }, (err) => {
       console.log(err);

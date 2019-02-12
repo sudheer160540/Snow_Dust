@@ -65,7 +65,7 @@ export class ClientproEditComponent implements OnInit {
       .subscribe((res) => {
         console.log("update")
         this.getClientList();
-        this.toastr.infoToastr('Client Project Updated succesfully');
+        this.toastr.infoToastr('Client Project Updated Succesfully');
         this.router.navigate(['/clientproject']);
       }, (err) => {
         console.log(err);

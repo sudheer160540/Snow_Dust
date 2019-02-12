@@ -66,7 +66,7 @@ export class ClientContactsComponent implements OnInit {
   addContact(data){
     this.submitted = true;
     this.clntcontser.addContact(this.user).subscribe((res) => {
-      this.toastr.successToastr('Client contact added Successfully');
+      this.toastr.successToastr('Client Contact Created Successfully');
       this.getallClientConta();
     }, (err) => {
       alert('error');
